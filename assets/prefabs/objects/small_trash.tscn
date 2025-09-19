@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://i01khkvtpo1p"]
+
+[ext_resource type="Script" uid="uid://buxcb56gtx2lr" path="res://scripts/gameplay/objects/small_trash.gd" id="1_8mng4"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dckq0"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="small_trash" type="RigidBody3D"]
+collision_layer = 8
+gravity_scale = 0.5
+script = ExtResource("1_8mng4")
+
+[node name="trash" type="CSGBox3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_dckq0")
+
+[connection signal="sleeping_state_changed" from="." to="." method="_on_sleeping_state_changed"]

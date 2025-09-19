@@ -1,0 +1,93 @@
+[gd_scene load_steps=10 format=4 uid="uid://c8jl2vxh0ppio"]
+
+[ext_resource type="Texture2D" uid="uid://daytjpettahvr" path="res://assets/models/environment/road_pack/City_Road_Sidewalk.jpeg" id="1_1ta4q"]
+[ext_resource type="Texture2D" uid="uid://dvvqr7rn2bnxj" path="res://assets/models/environment/road_pack/Road_Intersection.jpeg" id="2_6r1at"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_63ret"]
+resource_name = "City_Road_mat"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 0.8)
+emission_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1jio0"]
+resource_name = "City_Intersection_mat"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.906332, 0.906332, 0.906332, 0.8)
+emission_enabled = true
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_37244"]
+_surfaces = [{
+"aabb": AABB(-1895.79, -10.2237, -1895.79, 3791.59, 20.4473, 3791.59),
+"format": 34359742465,
+"index_count": 117,
+"index_data": PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAQAFAAMABQABAAYABgAHAAUABgABAAAAAAAEAAgAAAAJAAYACAAKAAAACwAJAAAAAAAKAAsAGgAQAAwADgAaAAwADAANAA4AGwAaAA4AGgAbABAADgARABsAHAAbABEAGwAcABAAEQASABwADwAcABIAHAAPABAAEgATAA8AHQAPABMADwAdABAAEwAUAB0AHgAdABQAHQAeABAAFAAVAB4AHwAeABUAHgAfABAAFQAXAB8AHwAgABAAIAAfABcAIAAWABAAFwAYACAAFgAgABgAGAAZABYA"),
+"lods": [36.5894, PackedByteArray("AAABAAIAAwACAAEAAgAEAAAAAQAFAAMABQABAAYABgAHAAUABgABAAAAAAAEAAgAAAAJAAYACAAKAAAACwAJAAAAAAAKAAsADAANAA4ADwAMAA4ADAAPABAADgARAA8AEQASAA8AEgATAA8AEwAUAA8AFAAVAA8ADwAWABAAFQAXAA8AFgAPABcAFwAYABYAGAAZABYA")],
+"name": "City_Road_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 33,
+"vertex_data": PackedByteArray("gAOpxICTI0GAA6lEUPnsxICTI0FQ+exEYPnsxICTI0Fg+ezEYPnsxCqUI8Fg+ezEgAOpxICTI0Fg+ezEUPnsxCqUI8FQ+exEYPnsRICTI0Fg+exEYPnsRCqUI8Fg+exEgAOpxAqUI8Fg+ezEYPnsRICTI0GAA6lEgAOpxByUI8GAA6lEYPnsRBWUI8GAA6lEYPnsRKqTI0FYA6nEYPnsROuTI8FYAqnEkNbhRNaTI8FYd6rEECPBRCqUI0FYPbnEYPnsRKqTI0FY+ezEsAbWRNaTI8FYg63EkO/KRNaTI8FYfbLEECPBRNaTI8FYPbnEMNC4RNaTI8FYkMHEsA+yRNaTI8FYNcvEkAOpRCqUI0E4+ezE8BWtRNaTI8FY4NXEMAqqRNaTI8FYP+HEgAOpROuTI8FQ+ezEkNbhRCqUI0FYd6rEsAbWRCqUI0FYg63E0O/KRCqUI0FYfbLEMNC4RCqUI0FYkMHEsA+yRCqUI0FYNcvEEBatRCqUI0FY4NXEMAqqRCqUI0FYP+HE")
+}, {
+"aabb": AABB(-1352.11, -10.2237, -1895.79, 3247.9, 4.673e-05, 3247.9),
+"format": 34359742465,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"name": "City_Intersection_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("gAOpxByUI8GAA6lEgAOpxAqUI8Fg+ezEYPnsROuTI8FQ+ezEYPnsRBWUI8GAA6lE")
+}]
+blend_shape_mode = 0
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_fo1vu"]
+resource_name = "Road_L_Intersection"
+_surfaces = [{
+"aabb": AABB(-1895.79, -10.2237, -1895.79, 3791.59, 20.4473, 3791.59),
+"attribute_data": PackedByteArray("tUpbP5pKWz///38/2PV/PwAAAADY9X8/AAAAAJpKWz///38/2PV/P///fz/Y9X8/AAAAANj1fz8AAAAA2PV/P7VKWz+aSls/AAAAAJpKWz8AAAAAmkpbP402Wz+aSls/StUSPppKWz///38/mkpbP///fz/Y9X8/AAAAANj1fz///38/2PV/P///fz/Y9X8/AAAAANj1fz8AAAAA2PV/P0rVEj6aSls/qYQSPppKWz///38/mkpbP///fz+aSls/DqjIPppKWz8MqMg+mkpbP+zD1D6aSls/zsUAP5pKWz9SceQ+mkpbP6Ao8z6aSls/zcUAP5pKWz8/4gc/mkpbP7H+Dj+aSls/IxsWP5pKWz8IVCQ/mkpbP5U3HT+aSls/B1QkP5pKWz/OxQA/mkpbPwhUJD+aSls/POUAP8/ofz8OqMg+mkpbP+zD1D6aSls/7MPUPppKWz+WNx0/mkpbP5Y3HT+aSls/POUAP8/ofz+WNx0/mkpbPyQbFj+aSls/lTcdP5pKWz8kGxY/mkpbP5Y3HT+aSls/POUAP8/ofz8kGxY/mkpbP7L+Dj+aSls/IxsWP5pKWz+y/g4/mkpbPyQbFj+aSls/POUAP8/ofz+y/g4/mkpbP0DiBz+aSls/sf4OP5pKWz9A4gc/mkpbP7L+Dj+aSls/POUAP8/ofz9A4gc/mkpbPz/iBz+aSls/QOIHP5pKWz885QA/z+h/P87FAD+aSls/oCjzPppKWz/NxQA/mkpbP6Ao8z6aSls/zsUAP5pKWz885QA/z+h/P6Ao8z6aSls/VHHkPppKWz+gKPM+mkpbP1Rx5D6aSls/oCjzPppKWz885QA/z+h/P1Rx5D6aSls/7MPUPppKWz/sw9Q+mkpbP1Jx5D6aSls/7MPUPppKWz9UceQ+mkpbPzzlAD/P6H8/"),
+"format": 34359742487,
+"index_count": 117,
+"index_data": PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAKQAnACgAGgAqABgAGAAZABoAIgArACMAIwAkACIALAAmAC0ALgAvACEAIQAwAC4AMQAyADMANAA1ACAAIAA2ADQANwA4ADkAOgA7AB8AHwA8ADoAPQA+AD8AQAAbAB4AHgBBAEAAJQBCAEMARABFAB0AHQBGAEQARwBIAEkASgBLABwAHABMAEoATQBOAE8AUABRAFIAUgBTAFAAVABVAFYA"),
+"lods": [36.5894, PackedByteArray("AAABAAIAAgADAAAABAAFAAYABgAHAAQACAAJAAoACgALAAgADAANAA4ADgAPAAwAEAARABIAEgATABAAFAAVABYAFgAXABQAGAAZABoAGwAYABoAGgAcABsAHAAdABsAHQAeABsAHgAfABsAHwAgABsAIAAhABsAIgAbACEAIQAjACIAIwAkACIAJQAmACcAKAAlACcA")],
+"material": SubResource("StandardMaterial3D_63ret"),
+"name": "City_Road_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 87,
+"vertex_data": PackedByteArray("gAOpxICTI0GAA6lEUPnsxICTI0FQ+exEYPnsxICTI0Fg+ezEgAOpxICTI0Fg+ezEUPnsxICTI0FQ+exEUPnsxCqUI8FQ+exEYPnsxCqUI8Fg+ezEYPnsxICTI0Fg+ezEgAOpxICTI0GAA6lEgAOpxICTI0Fg+ezEgAOpxAqUI8Fg+ezEgAOpxByUI8GAA6lEgAOpxICTI0GAA6lEYPnsRICTI0GAA6lEYPnsRICTI0Fg+exEUPnsxICTI0FQ+exEYPnsRICTI0Fg+exEYPnsRCqUI8Fg+exEUPnsxCqUI8FQ+exEUPnsxICTI0FQ+exEgAOpxICTI0GAA6lEgAOpxByUI8GAA6lEYPnsRBWUI8GAA6lEYPnsRICTI0GAA6lEYPnsRKqTI0FYA6nEYPnsROuTI8FYAqnEkNbhRNaTI8FYd6rEECPBRCqUI0FYPbnEsAbWRNaTI8FYg63EkO/KRNaTI8FYfbLEECPBRNaTI8FYPbnEMNC4RNaTI8FYkMHEsA+yRNaTI8FYNcvE8BWtRNaTI8FY4NXEkAOpRCqUI0E4+ezEMAqqRNaTI8FYP+HEgAOpROuTI8FQ+ezEECPBRCqUI0FYPbnEkAOpRCqUI0E4+ezEYPnsRKqTI0FY+ezEYPnsRKqTI0FYA6nEkNbhRCqUI0FYd6rEkNbhRCqUI0FYd6rEMAqqRCqUI0FYP+HEMAqqRCqUI0FYP+HEYPnsRKqTI0FY+ezEMAqqRCqUI0FYP+HEEBatRCqUI0FY4NXEMAqqRNaTI8FYP+HEEBatRCqUI0FY4NXEMAqqRCqUI0FYP+HEYPnsRKqTI0FY+ezEEBatRCqUI0FY4NXEsA+yRCqUI0FYNcvE8BWtRNaTI8FY4NXEsA+yRCqUI0FYNcvEEBatRCqUI0FY4NXEYPnsRKqTI0FY+ezEsA+yRCqUI0FYNcvEMNC4RCqUI0FYkMHEsA+yRNaTI8FYNcvEMNC4RCqUI0FYkMHEsA+yRCqUI0FYNcvEYPnsRKqTI0FY+ezEMNC4RCqUI0FYkMHEMNC4RNaTI8FYkMHEMNC4RCqUI0FYkMHEYPnsRKqTI0FY+ezEECPBRCqUI0FYPbnE0O/KRCqUI0FYfbLEECPBRNaTI8FYPbnE0O/KRCqUI0FYfbLEECPBRCqUI0FYPbnEYPnsRKqTI0FY+ezE0O/KRCqUI0FYfbLEsAbWRCqUI0FYg63EkO/KRNaTI8FYfbLEsAbWRCqUI0FYg63E0O/KRCqUI0FYfbLEYPnsRKqTI0FY+ezEsAbWRCqUI0FYg63EkNbhRCqUI0FYd6rEkNbhRNaTI8FYd6rEsAbWRNaTI8FYg63EkNbhRCqUI0FYd6rEsAbWRCqUI0FYg63EYPnsRKqTI0FY+ezE/3////9//7//f////3//v/9/////f/+//3////9//78AAP9/////PwAA/3////8/AAD/f////z8AAP9/////P////3////+/////f////7////9/////v////3////+//3////7//7//f///////v/9///////+//3////7//7//f/9/////P/9//3////8//3//f////z//f/9/////P/////////+//////////7//////////v/////////+/N3EVgP///z83cRWA////PzdxFYD///8//z//f////z9aWAGA////P8tLAYD///8//z//f////z+1NP9/////P7coAYD///8/DRsBgP///z9NCgCA////P00KAID///8/TQoAgP///z//f/7/AAD/3/9//v8AANj6/3/+/wAAYsf/f/7/AABix/9//v8AAGLHN3EVgP///z9NCgCA////P/9//v8AANj6/3/+/wAA2PoNGwGA////Pw0bAYD///8/DRsBgP///z//f/7/AAB58v9//v8AAHny/3/+/wAAefK3KAGA////P7coAYD///8/tygBgP///z//f/7/AABalP9//v8AAFqU/3/+/wAAWpS1NP9/////P7U0/3////8/tTT/f////z//f/7/AABamv9//v8AAFqa/3/+/wAAWpr/P/9/////P/8//3////8//3/+/wAA/9//f/7/AAD/38tLAYD///8/y0sBgP///z/LSwGA////P/9//v8AABna/3/+/wAAGdr/f/7/AAAZ2lpYAYD///8/WlgBgP///z9aWAGA////P/9//v8AANLT/3/+/wAA0tP/f/7/AADS08Bl/3////8/wGX/f////z/AZf9/////P8Bl/3////8//3///wAA37L/f///AADfsv9///8AAN+y")
+}, {
+"aabb": AABB(-1352.11, -10.2237, -1895.79, 3247.9, 4.673e-05, 3247.9),
+"attribute_data": PackedByteArray("trI8PkfIUT8pUj0+AGAQuRbAfz8AfEQ67Zd/PzICUj8="),
+"format": 34359742487,
+"index_count": 6,
+"index_data": PackedByteArray("AAABAAIAAgADAAAA"),
+"material": SubResource("StandardMaterial3D_1jio0"),
+"name": "City_Intersection_mat",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 4,
+"vertex_data": PackedByteArray("gAOpxByUI8GAA6lEgAOpxAqUI8Fg+ezEYPnsROuTI8FQ+ezEYPnsRBWUI8GAA6lE/3//////EMD/f/////8QwP9//////xDA/3//////EMA=")
+}]
+blend_shape_mode = 0
+shadow_mesh = SubResource("ArrayMesh_37244")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3pdrt"]
+albedo_texture = ExtResource("1_1ta4q")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_13ta6"]
+albedo_texture = ExtResource("2_6r1at")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_qhshh"]
+data = PackedVector3Array(-1352.11, 10.2235, 1352.11, -1895.79, 10.2235, 1895.79, -1895.79, 10.2235, -1895.79, -1895.79, 10.2235, -1895.79, -1352.11, 10.2235, -1895.79, -1352.11, 10.2235, 1352.11, -1895.79, 10.2235, 1895.79, -1895.79, -10.2237, 1895.79, -1895.79, -10.2237, -1895.79, -1895.79, -10.2237, -1895.79, -1895.79, 10.2235, -1895.79, -1895.79, 10.2235, 1895.79, -1352.11, 10.2235, 1352.11, -1352.11, 10.2235, -1895.79, -1352.11, -10.2236, -1895.79, -1352.11, -10.2236, -1895.79, -1352.11, -10.2237, 1352.11, -1352.11, 10.2235, 1352.11, -1352.11, 10.2235, 1352.11, 1895.79, 10.2235, 1352.11, 1895.79, 10.2235, 1895.79, 1895.79, 10.2235, 1895.79, -1895.79, 10.2235, 1895.79, -1352.11, 10.2235, 1352.11, 1895.79, 10.2235, 1895.79, 1895.79, -10.2237, 1895.79, -1895.79, -10.2237, 1895.79, -1895.79, -10.2237, 1895.79, -1895.79, 10.2235, 1895.79, 1895.79, 10.2235, 1895.79, -1352.11, 10.2235, 1352.11, -1352.11, -10.2237, 1352.11, 1895.79, -10.2237, 1352.11, 1895.79, -10.2237, 1352.11, 1895.79, 10.2235, 1352.11, -1352.11, 10.2235, 1352.11, 1806.71, 10.2237, -1363.73, 1895.79, 10.2236, -1895.79, 1895.79, 10.2236, -1352.1, 1806.71, -10.2236, -1363.73, 1806.71, 10.2237, -1363.73, 1895.79, 10.2236, -1352.1, 1895.79, 10.2236, -1352.1, 1895.79, -10.2236, -1352.07, 1806.71, -10.2236, -1363.73, 1352.11, 10.2237, -1895.79, 1360.32, 10.2237, -1801.98, 1360.32, -10.2236, -1801.98, 1360.32, -10.2236, -1801.98, 1352.11, -10.2236, -1895.79, 1352.11, 10.2237, -1895.79, 1360.32, 10.2237, -1801.98, 1352.11, 10.2237, -1895.79, 1895.79, 10.2236, -1895.79, 1360.32, 10.2237, -1801.98, 1384.69, 10.2237, -1711.01, 1384.69, -10.2236, -1711.01, 1384.69, -10.2236, -1711.01, 1360.32, -10.2236, -1801.98, 1360.32, 10.2237, -1801.98, 1384.69, 10.2237, -1711.01, 1360.32, 10.2237, -1801.98, 1895.79, 10.2236, -1895.79, 1384.69, 10.2237, -1711.01, 1424.49, 10.2237, -1625.67, 1424.49, -10.2236, -1625.67, 1424.49, -10.2236, -1625.67, 1384.69, -10.2236, -1711.01, 1384.69, 10.2237, -1711.01, 1424.49, 10.2237, -1625.67, 1384.69, 10.2237, -1711.01, 1895.79, 10.2236, -1895.79, 1424.49, 10.2237, -1625.67, 1478.51, 10.2237, -1548.51, 1478.51, -10.2236, -1548.51, 1478.51, -10.2236, -1548.51, 1424.49, -10.2236, -1625.67, 1424.49, 10.2237, -1625.67, 1478.51, 10.2237, -1548.51, 1424.49, 10.2237, -1625.67, 1895.79, 10.2236, -1895.79, 1478.51, 10.2237, -1548.51, 1545.1, 10.2237, -1481.92, 1545.1, -10.2236, -1481.92, 1545.1, -10.2236, -1481.92, 1478.51, -10.2236, -1548.51, 1478.51, 10.2237, -1548.51, 1545.1, 10.2237, -1481.92, 1478.51, 10.2237, -1548.51, 1895.79, 10.2236, -1895.79, 1545.1, 10.2237, -1481.92, 1623.49, 10.2237, -1427.92, 1623.49, -10.2236, -1427.92, 1623.49, -10.2236, -1427.92, 1545.1, -10.2236, -1481.92, 1545.1, 10.2237, -1481.92, 1623.49, 10.2237, -1427.92, 1545.1, 10.2237, -1481.92, 1895.79, 10.2236, -1895.79, 1623.49, 10.2237, -1427.92, 1712.21, 10.2237, -1388.1, 1712.21, -10.2236, -1388.1, 1712.21, -10.2236, -1388.1, 1623.49, -10.2236, -1427.92, 1623.49, 10.2237, -1427.92, 1712.21, 10.2237, -1388.1, 1623.49, 10.2237, -1427.92, 1895.79, 10.2236, -1895.79, 1712.21, 10.2237, -1388.1, 1806.71, 10.2237, -1363.73, 1806.71, -10.2236, -1363.73, 1806.71, -10.2236, -1363.73, 1712.21, -10.2236, -1388.1, 1712.21, 10.2237, -1388.1, 1806.71, 10.2237, -1363.73, 1712.21, 10.2237, -1388.1, 1895.79, 10.2236, -1895.79, -1352.11, -10.2237, 1352.11, -1352.11, -10.2236, -1895.79, 1895.79, -10.2236, -1895.79, 1895.79, -10.2236, -1895.79, 1895.79, -10.2237, 1352.11, -1352.11, -10.2237, 1352.11)
+
+[node name="Road_L_Intersection" type="MeshInstance3D"]
+transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 0, 0)
+mesh = SubResource("ArrayMesh_fo1vu")
+skeleton = NodePath("")
+surface_material_override/0 = SubResource("StandardMaterial3D_3pdrt")
+surface_material_override/1 = SubResource("StandardMaterial3D_13ta6")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_qhshh")
