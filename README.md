@@ -1,6 +1,6 @@
 ## Crowd AI in Godot Engine
 
-Crowd AI is a crowd simulation system for NPCs made with Godot.
+Crowd AI is a crowd simulation system for NPCs made in Godot Engine.
 
 The project objective is to have a realistic and optimized flow of NPCs in open worlds, with support for:
 - Dynamic spawning based on player distance (with object pooling).
