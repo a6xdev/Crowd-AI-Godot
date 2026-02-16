@@ -1,10 +1,11 @@
 extends GOAPAction
 
 func init(actor:ActorGoapPed) -> bool:
+	actor.world_state.set("ai_at_target_location", false)
 	return true
 
 func execute(actor:ActorGoapPed) -> bool:
-	var location_target = actor.world_state.get("ai_target_position")
+	var location_target = actor.current_target_position
 	
 	if actor.flow_ai_agent.target_position != location_target:
 		actor.flow_ai_agent.set_target_position(location_target)
@@ -21,7 +22,6 @@ func execute(actor:ActorGoapPed) -> bool:
 
 func exit(actor:ActorGoapPed) -> void:
 	actor.move_dir = Vector3.ZERO
-	actor.flow_ai_agent.set_target_position(Vector3.ZERO)
 
 #region CALLS
 func is_valid(actor:ActorGoapPed) -> bool:
@@ -32,9 +32,7 @@ func get_cost() -> int:
 
 # Action requirements.
 func get_preconditions() -> Dictionary:
-	return {
-		"ai_at_target_location": false
-	}
+	return {}
 
 # What conditions this action satisfies
 func get_effects() -> Dictionary:

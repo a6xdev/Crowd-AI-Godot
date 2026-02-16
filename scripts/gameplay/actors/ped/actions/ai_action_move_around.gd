@@ -11,9 +11,9 @@ func execute(actor:ActorGoapPed) -> bool:
 	actor.move_dir = (agent_target - actor.global_position).normalized()
 	
 	if actor.flow_ai_agent.is_path_complete():
-		if walked_index > 2:
-			actor.world_state.set("ai_walked_around", true)
-			actor.world_state.set("ai_are_tired", true)
+		if walked_index >= 3:
+			actor.world_state.set("ai_want_move_around", false)
+			actor.world_state.set("ai_want_rest", true)
 			return true
 		else:
 			actor.flow_ai_agent.get_random_path()
@@ -22,7 +22,6 @@ func execute(actor:ActorGoapPed) -> bool:
 	return false
 
 func exit(actor:ActorGoapPed) -> void:
-	actor.world_state.set("ai_walked_around", false)
 	actor.move_dir = Vector3.ZERO
 	walked_index = 0
 
@@ -35,14 +34,11 @@ func get_cost() -> int:
 
 # Action requirements.
 func get_preconditions() -> Dictionary:
-	return {
-		"ai_walked_around": false,
-		"ai_is_on_action": false,
-	}
+	return {}
 
 # What conditions this action satisfies
 func get_effects() -> Dictionary:
 	return {
-		"ai_walked_around": true
+		"ai_want_move_around": false
 	}
 #endregion

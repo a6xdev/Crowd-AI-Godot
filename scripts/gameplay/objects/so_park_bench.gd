@@ -9,7 +9,7 @@ func perform_interaction(actor:ActorGoapPed) -> bool:
 	return false
 
 func desperform_interaction(actor:ActorGoapPed) -> bool:
-	actor.is_sitting = false
 	actor.current_action_slot.reset()
-	actor.current_target_smart_object = null
+	actor.current_smart_object = null
+	actor.is_sitting = false
 	return false

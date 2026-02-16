@@ -13,7 +13,15 @@ enum SpeedType {
 var move_dir:Vector3 = Vector3.ZERO
 var look_dir:Vector3 = Vector3.ZERO
 
-@export var world_state:Dictionary[String, Variant] = {}
+@export var world_state:Dictionary[String, Variant] = {
+		"ai_is_going_to_place": false,
+		
+		"ai_at_target_location": false,
+		
+		"ai_want_move_around": false,
+		"ai_want_event": false,
+		"ai_want_rest": false,
+	}
 
 @export_group("Character Settings")
 @export var ped_walk_speed:float = 2.0
@@ -34,37 +42,38 @@ var is_stopped:bool = false
 var is_walking:bool = false
 var is_running:bool = false
 var is_sitting:bool = false
+var is_on_event:bool = false
 
 var nearby_bodies:Array[ActorGoapPed] = []
 var nearby_smart_objects:Array[SmartObject] = []
+var nearby_events:Array[Event] = []
 
 var current_speed_type:SpeedType = SpeedType.WALK
 var current_target_position:Vector3 = Vector3(10.0, 0.0, 0.0)
+
+var current_smart_object:SmartObject = null
+var current_event:Event = null
 var current_action_slot:ActionSlot = null
-var current_target_smart_object:SmartObject = null
+var goap_current_goal:GOAPGoal = null
 var goap_current_plan:Array = []
 var goap_current_action:GOAPAction = null
 
 #region GODOT CALLS
 func _ready() -> void:
-	world_state = {
-		"ai_at_target_location": false,
-		"ai_is_on_action": false,
-		"ai_are_tired": false,
-		"ai_walked_around": false,
-		"ai_has_smart_object": false,
-		
-		"ai_target_smart_object": null,
-		"ai_target_position": Vector3(10, 0, 0)
-	}
+	NpcManager.all_peds.append(self)
 
 func _input(event: InputEvent) -> void:
 	if Input.is_action_just_pressed("d_action_01"):
-		goap_current_plan = action_planer.make_plan(self, goal_selector.get_best_goal(self))
+		goap_current_goal = goal_selector.get_best_goal(self)
+		goap_current_plan = action_planer.make_plan(self, goap_current_goal)
+		print("current_goal: ", goap_current_goal)
+		print("current_plan: ", goap_current_plan)
+		print("\n")
 
 func _physics_process(delta: float) -> void:
 	animation_controller()
 	movement_controller()
+	orientation_controller()
 	goap_controller()
 	
 	if not is_on_floor():
@@ -86,7 +95,7 @@ func animation_controller() -> void:
 		is_running = false
 
 func movement_controller() -> void:
-	if ped_can_move:
+	if ped_can_move and not is_sitting:
 		var avoidance_force = _get_avoidance_force()
 		var final_dir = move_dir
 		
@@ -99,7 +108,9 @@ func movement_controller() -> void:
 		velocity = Vector3.ZERO
 
 func orientation_controller() -> void:
-	pass
+	if velocity.length() > 0.5:
+		var to_target = atan2(move_dir.x, move_dir.z)
+		rotation.y = lerp_angle(rotation.y, to_target, 0.2)
 
 func goap_controller() -> void:
 	if goap_current_action == null and not goap_current_plan.is_empty():
@@ -141,6 +152,20 @@ func _get_current_speed() -> float:
 		SpeedType.RUN:
 			return ped_run_speed
 	return 0.0
+
+func get_best_event() -> Event:
+	var best_event:Event = null
+	var highest_dist:float = -1.0
+	
+	for event in nearby_events:
+		if event is Event:
+			var dist = event.global_position.distance_to(global_position)
+			if dist > highest_dist:
+				highest_dist = dist
+				best_event = event
+	
+	current_event = best_event
+	return best_event
 #endregion
 
 #region SIGNALS

@@ -13,8 +13,7 @@ enum SpawnerType {
 var m_smart_object:SmartObject = null
 var m_action_slot:ActionSlot = null
 
-var all_peds_in_slot:Array[actor_npc] = []
-var group_manager:PedGroupManager = null
+var all_peds_in_slot:Array[ActorGoapPed] = []
 
 func _ready() -> void:
 	randomize()
@@ -22,7 +21,7 @@ func _ready() -> void:
 	NpcManager.PedSpawnerControllerNode.registry_ped_spawner(self)
 
 #region CALLS
-func set_ped_spawner_slot(ped:actor_npc) -> void:
+func set_ped_spawner_slot(ped:ActorGoapPed) -> void:
 	if all_peds_in_slot.has(ped):
 		return
 	
@@ -31,9 +30,9 @@ func set_ped_spawner_slot(ped:actor_npc) -> void:
 	match ped_spawner_type:
 		SpawnerType.DEFAULT:
 			# Peds default, they only will walk on the map
-			ped.flow_ai_agent.get_random_path()
-			var task:PedTask = ped.new_task(PedTask.Type.MOVE_TO, ped.flow_ai_agent.get_next_pathnode_position())
-			ped.has_movement_task = true
+			#ped.flow_ai_agent.get_random_path()
+			#var task:PedTask = ped.new_task(PedTask.Type.MOVE_TO, ped.flow_ai_agent.get_next_pathnode_position())
+			#ped.has_movement_task = true
 			return
 		
 		SpawnerType.ACTION:
@@ -90,15 +89,11 @@ func set_ped_spawner_slot(ped:actor_npc) -> void:
 			#ped.is_leaning_wall_back = true
 
 # When the ped is despawned, the slot is cleared
-func clean_ped_spawner_slot(ped:actor_npc) -> void:
+func clean_ped_spawner_slot(ped:ActorGoapPed) -> void:
 	if all_peds_in_slot.has(ped):
-		
 		all_peds_in_slot.erase(ped)
-		if group_manager and group_manager.peds_in_group.is_empty():
-			group_manager.queue_free()
 
 func reset_spawn():
 	all_peds_in_slot.clear()
 	can_spawn = false
-	if group_manager: group_manager.queue_free()
 #endregion

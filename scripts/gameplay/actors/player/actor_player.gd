@@ -1,13 +1,18 @@
 extends CharacterBody3D
 class_name Player
 
+const SMALL_TRASH = preload("res://assets/prefabs/objects/small_trash.tscn")
+
 @onready var mesh: Node3D = $mesh
 @onready var pivot: Node3D = $pivot
 @onready var spring_arm: SpringArm3D = $pivot/SpringArm3D
 @onready var camera: FreeLookCamera = $pivot/SpringArm3D/camera
 @onready var trash_obj: CSGBox3D = $mesh/Rig/Skeleton3D/HandL/trash
 
-const SMALL_TRASH = preload("res://assets/prefabs/objects/small_trash.tscn")
+enum PerspectiveType {
+	THIRD_PERSON,
+	FIRST_PERSON
+}
 
 var look_rot = Vector3.ZERO
 var move_dir = Vector3.ZERO
@@ -40,6 +45,7 @@ var is_crouching:bool = false
 var is_dancing:bool = false
 var is_dropping:bool = false
 
+var current_perspective_type:PerspectiveType = PerspectiveType.THIRD_PERSON
 var current_speed:float = 0.0
 
 #region GODOT FUNCTIONS
@@ -51,7 +57,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion and can_move_camera:
 		look_rot.y -= event.relative.x * mouse_sensitivity
 		look_rot.x -= event.relative.y * mouse_sensitivity
-		look_rot.x = clamp(look_rot.x, deg_to_rad(-70.0), deg_to_rad(90.0))
+		if current_perspective_type == PerspectiveType.THIRD_PERSON:
+			look_rot.x = clamp(look_rot.x, deg_to_rad(-70.0), deg_to_rad(90.0))
+		
 	
 	if Input.is_action_just_pressed("d_flymode"):
 		flymode = !flymode

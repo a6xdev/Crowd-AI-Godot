@@ -19,7 +19,7 @@ func perform_interaction(actor:ActorGoapPed) -> bool:
 	return false
 
 # Get out of the smart objects
-func desperfom_interaction(actor:ActorGoapPed) -> bool:
+func desperform_interaction(actor:ActorGoapPed) -> bool:
 	return false
 	
 func get_empty_slot() -> ActionSlot:

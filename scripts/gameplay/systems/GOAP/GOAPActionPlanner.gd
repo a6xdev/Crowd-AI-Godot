@@ -8,14 +8,11 @@ func make_plan(actor:ActorGoapPed, goal:GOAPGoal) -> Array:
 	var world_state = actor.world_state
 	var desired_state = goal.get_desired_state()
 	
-	if _in_state(desired_state, world_state):
+	var is_valid = _in_state(desired_state, world_state)
+	if is_valid:
 		return []
 	
 	plan = _build_plan(actor, desired_state, world_state, 5)
-	
-	for action in plan:
-		print(action.ActionName)
-	print("\n")
 	
 	return plan
 
@@ -24,9 +21,9 @@ func _build_plan(actor:ActorGoapPed, target_state:Dictionary, current_state:Dict
 		return []
 	
 	if _in_state(target_state, current_state): return []
-	
 	for action in get_children():
-		if action is GOAPAction and action.is_valid(actor):
+		var is_valid = action.is_valid(actor)
+		if action is GOAPAction and is_valid:
 			if not _action_satisfies_state(action.get_effects(), target_state):
 				continue
 			

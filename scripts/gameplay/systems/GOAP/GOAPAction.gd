@@ -1,7 +1,6 @@
 extends Node
 class_name GOAPAction
 
-@export var ActionName:String = "AIGoal"
 @export var ActionPriority:int = 1
 
 #region FUNCTIONS BASE

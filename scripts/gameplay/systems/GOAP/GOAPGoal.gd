@@ -1,7 +1,6 @@
 extends Node
 class_name GOAPGoal
 
-@export var GoalName:String = "AIGoal"
 @export var GoalPriority:int = 1
 
 #region CALLS
