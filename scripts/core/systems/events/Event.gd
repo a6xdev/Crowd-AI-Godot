@@ -16,7 +16,7 @@ enum EventType {
 
 var event_owner:CharacterBody3D = null
 var event_origin := Vector3.ZERO
-var event_involved_npcs:Array[ActorGoapPed] = []
+var event_involved_npcs:Array[ActorPed] = []
 var event_stop_slots:Array[ActionSlot] = []
 
 var collision := CollisionShape3D.new()
@@ -50,8 +50,8 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	# Timer to finish event
 	await get_tree().create_timer(event_lifetime).timeout
-	for child in event_involved_npcs:
-		if child is ActorGoapPed and child.nearby_events.has(self):
+	for child:ActorPed in event_involved_npcs:
+		if child.nearby_events.has(self):
 			child.nearby_events.erase(self)
 	emit_signal("event_finished", self)
 	queue_free()
@@ -82,7 +82,7 @@ func generate_circle_slots() -> void:
 		event_stop_slots.append(slot)
 		add_child(slot)
 
-func get_free_slot(actor:ActorGoapPed) -> ActionSlot:
+func get_free_slot(actor:ActorPed) -> ActionSlot:
 	if not event_involved_npcs.has(actor): event_involved_npcs.append(actor)
 	for slot in event_stop_slots:
 		if not slot.is_taken:
@@ -94,7 +94,7 @@ func get_free_slot(actor:ActorGoapPed) -> ActionSlot:
 
 #region SIGNALS
 func _on_body_entered(body:Node3D):
-	if body is ActorGoapPed and body != event_owner:
+	if body is ActorPed and body != event_owner:
 		var raycast = RayCast3D.new()
 		add_child(raycast)
 		raycast.target_position = body.position - global_position
@@ -110,15 +110,12 @@ func _on_body_entered(body:Node3D):
 				event_involved_npcs.append(body)
 			body.nearby_events.append(self)
 			body.world_state.set("ai_has_event", true)
-			#body.stimulus_controller.set_event(self)
-		
+			
 		await get_tree().create_timer(1.0).timeout
 		raycast.queue_free()
 
 func _on_body_exited(body:Node3D):
-	if body is ActorGoapPed:
-		#body.is_on_event = false
-		#body.stimulus_controller.current_event = null
+	if body is ActorPed:
 		if event_involved_npcs.has(body):
 			event_involved_npcs.erase(body)
 #endregion

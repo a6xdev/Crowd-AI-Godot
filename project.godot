@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 World="*res://scripts/core/globals/World.gd"
 NpcManager="*res://scripts/core/globals/NpcManager.gd"
+FlowAIDebugDraw="*res://addons/FlowAI/scripts/debug/DebugDraw3D.gd"
 
 [debug_draw_3d]
 

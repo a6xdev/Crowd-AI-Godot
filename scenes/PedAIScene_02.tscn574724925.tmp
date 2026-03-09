@@ -1,45 +1,14 @@
-[gd_scene load_steps=24 format=3 uid="uid://dugpcfhubpqy6"]
+[gd_scene load_steps=17 format=3 uid="uid://dugpcfhubpqy6"]
 
-[ext_resource type="Script" uid="uid://dd5lfsdhb8jrr" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="1_73hi0"]
-[ext_resource type="Script" uid="uid://cf0y76r5hyivm" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="2_q8l35"]
-[ext_resource type="Script" uid="uid://bs3dikeebb8j7" path="res://addons/FlowAI/scripts/resources/FlowAIAreaData.gd" id="3_5fbmf"]
-[ext_resource type="Script" uid="uid://c750mtb583ysx" path="res://addons/FlowAI/scripts/runtime/FlowAIPathNode.gd" id="3_d5acn"]
+[ext_resource type="Script" uid="uid://bysxpb73lr46b" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="1_73hi0"]
+[ext_resource type="Script" uid="uid://csbl3jypfxtwg" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="2_q8l35"]
+[ext_resource type="Script" uid="uid://i1dbg8h2x6sq" path="res://addons/FlowAI/scripts/runtime/FlowAIPathNode.gd" id="3_d5acn"]
 [ext_resource type="PackedScene" uid="uid://c8ss606rlj773" path="res://assets/prefabs/environments/park_bench/so_park_bench.tscn" id="4_n0ql3"]
 [ext_resource type="Texture2D" uid="uid://cxuejfat7wko5" path="res://assets/textures/GroundPrototype/dark/texture_08.png" id="5_13o5t"]
-[ext_resource type="Script" uid="uid://c7lpajlx84dd8" path="res://addons/FlowAI/scripts/resources/FlowAIPathNodeData.gd" id="5_n0ql3"]
 [ext_resource type="PackedScene" uid="uid://j5nwodo50yh3" path="res://assets/prefabs/characters/actor_player.tscn" id="6_h40jg"]
 [ext_resource type="PackedScene" uid="uid://cor842snoqhpm" path="res://assets/prefabs/characters/actor_ped.tscn" id="7_73hi0"]
 [ext_resource type="PackedScene" uid="uid://bxwxflsejagit" path="res://assets/prefabs/UI/crowd_ai_interface.tscn" id="9_8ebkj"]
 [ext_resource type="Texture2D" uid="uid://4pxnh1mqg4f6" path="res://assets/textures/hdri/qwantani_noon_puresky_2k.exr" id="10_76qwm"]
-
-[sub_resource type="Resource" id="Resource_13o5t"]
-script = ExtResource("3_5fbmf")
-a_id = 1
-
-[sub_resource type="Resource" id="Resource_h40jg"]
-script = ExtResource("5_n0ql3")
-p_id = "1_0"
-p_area_id = 1
-p_links = ["1_1"]
-
-[sub_resource type="Resource" id="Resource_n7v18"]
-script = ExtResource("5_n0ql3")
-p_id = "1_1"
-p_area_id = 1
-p_prev_pathnode = "1_0"
-p_links = ["1_2", "1_3"]
-
-[sub_resource type="Resource" id="Resource_pfbxd"]
-script = ExtResource("5_n0ql3")
-p_id = "1_2"
-p_area_id = 1
-p_prev_pathnode = "1_1"
-
-[sub_resource type="Resource" id="Resource_8ebkj"]
-script = ExtResource("5_n0ql3")
-p_id = "1_3"
-p_area_id = 1
-p_prev_pathnode = "1_1"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_8pae6"]
 vertices = PackedVector3Array(-29, 0.4210975, 0, -10, 0.4210975, 0, -10, 0.4210975, -2, -9, 0.4210975, -2.25, -9, 0.4210975, -24.5, -29, 0.4210975, -24.5, -8, 0.4210975, -2, 29, 0.4210975, 0, 29, 0.4210975, -24.5, -8, 0.4210975, 0, -10, 0.4210975, 2, -9, 0.4210975, 2.25, -29, 0.4210975, 24.5, -9, 0.4210975, 24.5, -8, 0.4210975, 2, 29, 0.4210975, 24.5)
@@ -67,37 +36,34 @@ sky = SubResource("Sky_alfe8")
 
 [node name="CrowdAIScene02" type="Node3D"]
 
-[node name="FlowAIController" type="Node" parent="."]
+[node name="FlowAIController" type="Node" parent="." node_paths=PackedStringArray("all_areas", "all_pathnodes")]
 script = ExtResource("1_73hi0")
-metadata/_custom_type_script = "uid://dd5lfsdhb8jrr"
+DataPath = "res://data/CrowdAIScene_02_FlowAI.json"
+all_areas = [NodePath("area_1")]
+all_pathnodes = [NodePath("area_1/pathnode_1"), NodePath("area_1/pathnode_2"), NodePath("area_1/pathnode_3")]
+show_pathnode_shape = true
+show_pathnode_label = true
+metadata/_custom_type_script = "uid://bysxpb73lr46b"
 
-[node name="area_1" type="Node3D" parent="FlowAIController" node_paths=PackedStringArray("a_flow_controller")]
+[node name="area_1" type="Node3D" parent="FlowAIController" node_paths=PackedStringArray("flow_controller")]
 script = ExtResource("2_q8l35")
-a_data = SubResource("Resource_13o5t")
-a_flow_controller = NodePath("..")
+flow_controller = NodePath("..")
+area_pathnodes = Array[int]([1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
 
-[node name="pathnode_1_0" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("p_flow_controller")]
+[node name="pathnode_1" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
 script = ExtResource("3_d5acn")
-p_data = SubResource("Resource_h40jg")
-p_flow_controller = NodePath("../..")
+flow_controller = NodePath("../..")
 
-[node name="pathnode_1_1" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
+[node name="pathnode_2" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, 0)
 script = ExtResource("3_d5acn")
-p_data = SubResource("Resource_n7v18")
-p_flow_controller = NodePath("../..")
+flow_controller = NodePath("../..")
 
-[node name="pathnode_1_2" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -6)
+[node name="pathnode_3" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 0, -4)
 script = ExtResource("3_d5acn")
-p_data = SubResource("Resource_pfbxd")
-p_flow_controller = NodePath("../..")
-
-[node name="pathnode_1_3" type="Marker3D" parent="FlowAIController/area_1" node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 7)
-script = ExtResource("3_d5acn")
-p_data = SubResource("Resource_8ebkj")
-p_flow_controller = NodePath("../..")
+flow_controller = NodePath("../..")
 
 [node name="map" type="Node" parent="."]
 
@@ -121,7 +87,7 @@ shape = SubResource("ConcavePolygonShape3D_gm40l")
 transform = Transform3D(0.99999994, 0, 0, 0, 1, 0, 0, 0, 0.99999994, -3, 1.0000019, 18.76301)
 
 [node name="actor_ped" parent="actors" instance=ExtResource("7_73hi0")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 4, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="CrowdAIInterface" parent="." instance=ExtResource("9_8ebkj")]
 

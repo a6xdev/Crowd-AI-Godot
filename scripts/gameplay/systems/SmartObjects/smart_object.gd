@@ -15,11 +15,11 @@ func _ready() -> void:
 #endregion
 
 #region SYSTEM CALLS
-func perform_interaction(actor:ActorGoapPed) -> bool:
+func perform_interaction(actor:ActorPed) -> bool:
 	return false
 
 # Get out of the smart objects
-func desperform_interaction(actor:ActorGoapPed) -> bool:
+func desperform_interaction(actor:ActorPed) -> bool:
 	return false
 	
 func get_empty_slot() -> ActionSlot:

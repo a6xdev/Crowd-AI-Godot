@@ -13,7 +13,7 @@ enum SpawnerType {
 var m_smart_object:SmartObject = null
 var m_action_slot:ActionSlot = null
 
-var all_peds_in_slot:Array[ActorGoapPed] = []
+var all_peds_in_slot:Array[ActorPed] = []
 
 func _ready() -> void:
 	randomize()
@@ -21,7 +21,7 @@ func _ready() -> void:
 	NpcManager.PedSpawnerControllerNode.registry_ped_spawner(self)
 
 #region CALLS
-func set_ped_spawner_slot(ped:ActorGoapPed) -> void:
+func set_ped_spawner_slot(ped:ActorPed) -> void:
 	if all_peds_in_slot.has(ped):
 		return
 	
@@ -89,7 +89,7 @@ func set_ped_spawner_slot(ped:ActorGoapPed) -> void:
 			#ped.is_leaning_wall_back = true
 
 # When the ped is despawned, the slot is cleared
-func clean_ped_spawner_slot(ped:ActorGoapPed) -> void:
+func clean_ped_spawner_slot(ped:ActorPed) -> void:
 	if all_peds_in_slot.has(ped):
 		all_peds_in_slot.erase(ped)
 

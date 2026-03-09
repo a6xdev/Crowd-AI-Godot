@@ -174,7 +174,7 @@ func movement_controller(delta:float) -> void:
 #endregion
 
 #region CALLS
-func mechanic_DropTrash() -> void:
+func mechanic_drop_trash() -> void:
 	var root = get_tree().current_scene.find_child("RuntimeCreatedBodies")
 	
 	var model = SMALL_TRASH.instantiate()

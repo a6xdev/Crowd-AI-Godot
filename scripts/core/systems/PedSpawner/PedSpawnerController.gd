@@ -124,7 +124,7 @@ func decide_spawn(slot:PedSpawnerSlot):
 	return randf() < spawn_weights.get(slot.ped_spawner_type, 0.0)
 
 ## Get and active a ped
-func active_ped() -> ActorGoapPed:
+func active_ped() -> ActorPed:
 	if NpcManager.inactive_peds.is_empty():
 		return null
 	var actor_ped = NpcManager.inactive_peds.pop_back()
@@ -135,7 +135,7 @@ func active_ped() -> ActorGoapPed:
 	return actor_ped
 
 ## Disable the ped
-func disable_ped(ped:ActorGoapPed) -> void:
+func disable_ped(ped:ActorPed) -> void:
 	ped.global_position =  Vector3(0.0, -10.0, 0.0)
 	ped.ped_reset()
 	ped.visible = false
