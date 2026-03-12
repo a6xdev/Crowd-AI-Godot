@@ -45,7 +45,7 @@ func update(_delta:float):
 				pass
 			ActionType.SMART_OBJECT:
 				timer_in_smart_object += 1.0 * _delta
-				if actor.current_smart_object and timer_in_smart_object > 3.0:
+				if actor.current_smart_object and timer_in_smart_object > 15.0:
 					actor.current_smart_object.desperform_interaction(actor)
 					await actor.get_tree().create_timer(1.0).timeout
 					brain.change_state(PedStateWander.new())

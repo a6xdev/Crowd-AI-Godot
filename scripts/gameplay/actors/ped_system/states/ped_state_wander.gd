@@ -1,6 +1,10 @@
 extends PedestrianState
 class_name PedStateWander
 
+const MAX_PATH_COMPLETED_INDEX:int = 5
+
+var path_completed_index:int = 0
+
 func enter():
 	agent.get_random_path()
 
@@ -9,7 +13,13 @@ func exit():
 
 func update(_delta:float):
 	if agent.is_path_complete():
-		agent.get_random_path()
+		path_completed_index += 1
+		if path_completed_index >= MAX_PATH_COMPLETED_INDEX and not actor.nearby_smart_objects.is_empty():
+			var obj_smart_lol = actor.nearby_smart_objects.pick_random()
+			path_completed_index = 0
+			if obj_smart_lol: actor.set_smart_object(obj_smart_lol)
+		else:
+			agent.get_random_path()
 		return
 	else:
 		var target_pos = agent.get_next_pathnode_position()

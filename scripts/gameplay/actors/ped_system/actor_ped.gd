@@ -2,6 +2,7 @@ extends CharacterBody3D
 class_name ActorPed
 
 @onready var pedestrian_brain: PedestrianBrain = $core/PedestrianBrain
+@onready var mannequin_mesh: MeshInstance3D = $mesh/Rig/Skeleton3D/Mannequin
 
 var move_dir:Vector3 = Vector3.ZERO
 var look_dir:Vector3 = Vector3.ZERO
@@ -46,11 +47,15 @@ var current_event:Event = null
 signal _set_smart_object(smart_object:SmartObject)
 
 #region GODOT FUNCTIONS
-func _input(event: InputEvent) -> void:
-	if Input.is_action_just_pressed("d_action_01"):
-		var s_o = nearby_smart_objects.pick_random()
-		if s_o:
-			set_smart_object(s_o)
+func _ready() -> void:
+	var material_0 := StandardMaterial3D.new()
+	var material_1 := StandardMaterial3D.new()
+	
+	material_0.albedo_color = get_random_color()
+	material_1.albedo_color = get_random_color()
+	
+	mannequin_mesh.set_surface_override_material(0, material_0)
+	mannequin_mesh.set_surface_override_material(1, material_1)
 
 func _physics_process(delta: float) -> void:
 	animation_controller()
@@ -122,6 +127,9 @@ func _reset_actions() -> void:
 	current_action_slot = null
 	current_smart_object = null
 	current_event = null
+
+func get_random_color() -> Color:
+	return Color(randf(), randf(), randf(), 1.0)
 
 func _get_avoidance_force() -> Vector3:
 	var avoidance_force := Vector3.ZERO
