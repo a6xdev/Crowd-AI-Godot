@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://dugpcfhubpqy6"]
+[gd_scene load_steps=24 format=3 uid="uid://dugpcfhubpqy6"]
 
 [ext_resource type="Script" uid="uid://dd5lfsdhb8jrr" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="1_73hi0"]
 [ext_resource type="Script" uid="uid://cf0y76r5hyivm" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="2_q8l35"]
@@ -9,7 +9,6 @@
 [ext_resource type="Script" uid="uid://c7lpajlx84dd8" path="res://addons/FlowAI/scripts/resources/FlowAIPathNodeData.gd" id="5_n0ql3"]
 [ext_resource type="PackedScene" uid="uid://j5nwodo50yh3" path="res://assets/prefabs/characters/actor_player.tscn" id="6_h40jg"]
 [ext_resource type="PackedScene" uid="uid://cor842snoqhpm" path="res://assets/prefabs/characters/actor_ped.tscn" id="7_73hi0"]
-[ext_resource type="Script" uid="uid://nll4frg1vfab" path="res://scripts/gameplay/systems/SmartObjects/dynamic_smart_object.gd" id="8_5fbmf"]
 [ext_resource type="PackedScene" uid="uid://bxwxflsejagit" path="res://assets/prefabs/UI/crowd_ai_interface.tscn" id="9_8ebkj"]
 [ext_resource type="Texture2D" uid="uid://4pxnh1mqg4f6" path="res://assets/textures/hdri/qwantani_noon_puresky_2k.exr" id="10_76qwm"]
 
@@ -115,11 +114,6 @@ mesh = SubResource("PlaneMesh_o75dy")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="map/NavigationRegion3D/plane/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_gm40l")
-
-[node name="DynamicSmartObject" type="Node3D" parent="map"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
-script = ExtResource("8_5fbmf")
-metadata/_custom_type_script = "uid://nll4frg1vfab"
 
 [node name="actors" type="Node" parent="."]
 

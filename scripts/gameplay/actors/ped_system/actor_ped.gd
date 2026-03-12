@@ -103,7 +103,10 @@ func orientation_controller() -> void:
 		rotation.y = lerp_angle(rotation.y, to_target, 0.2)
 	else:
 		if current_event and is_on_event:
-			pass
+			# Rotate the Ped to the current_event
+			var dir = (current_event.global_position - global_position).normalized()
+			var to_target = atan2(dir.x, dir.z)
+			rotation.y = lerp_angle(rotation.y, to_target, 0.2)
 #endregion
 
 #region CALLS
