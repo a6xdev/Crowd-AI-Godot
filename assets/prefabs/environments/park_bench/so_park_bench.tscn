@@ -105,9 +105,10 @@ heightmap_texture = ExtResource("7_4qyln")
 [sub_resource type="BoxShape3D" id="BoxShape3D_vn3mn"]
 size = Vector3(2.4638367, 0.70007324, 0.35868835)
 
-[node name="so_park_bench" type="StaticBody3D"]
+[node name="so_park_bench" type="Node3D"]
 transform = Transform3D(1.325, 0, 0, 0, 1.325, 0, 0, 0, 1.325, 0, 0, 0)
 script = ExtResource("1_vn3mn")
+metadata/_custom_type_script = "uid://dotyjoryn6h4s"
 
 [node name="mesh" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.36068517, 0.06825617)
@@ -116,8 +117,10 @@ skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_wj1ql")
 surface_material_override/1 = SubResource("StandardMaterial3D_xr76i")
 
-[node name="collision" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005197434, 0.2904879, 0.01156573)
+[node name="StaticBody3D" type="StaticBody3D" parent="mesh"]
+
+[node name="collision" type="CollisionShape3D" parent="mesh/StaticBody3D"]
+transform = Transform3D(0.83333325, 0, 0, 0, 0.83333325, 0, 0, 0, 0.83333325, 0.004331195, -0.05849774, -0.04724203)
 shape = SubResource("BoxShape3D_vn3mn")
 
 [node name="ParkBench_EventSlot_01" type="Marker3D" parent="."]

@@ -1,4 +1,4 @@
-extends SmartObject
+extends StaticSmartObject
 class_name so_ParkBench
 
 @export var sit_rotation_y:float = 0.0

@@ -1,9 +1,5 @@
-extends StaticBody3D
+extends Node3D
 class_name SmartObject
-
-enum SmartObjectsType {
-	REST,
-}
 
 var slots:Array[ActionSlot] = []
 
@@ -14,7 +10,7 @@ func _ready() -> void:
 			slots.append(child)
 #endregion
 
-#region SYSTEM CALLS
+#region CALLS
 func perform_interaction(actor:ActorPed) -> bool:
 	return false
 
