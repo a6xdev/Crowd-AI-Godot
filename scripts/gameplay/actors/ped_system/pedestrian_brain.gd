@@ -1,8 +1,8 @@
 extends Node
+class_name PedestrianBrain
 
 @onready var actor_ped: ActorPed = $"../.."
 @onready var agent: FlowAIAgent3D = $"../../FlowAIAgent3D"
-
 
 var current_state:PedestrianState = null
 

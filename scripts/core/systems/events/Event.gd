@@ -4,7 +4,6 @@ class_name Event
 enum EventType {
 	NONE,
 	DANCE,
-	AGRESSION
 }
 
 @export var event_priority:int = 1
@@ -22,7 +21,6 @@ var event_stop_slots:Array[ActionSlot] = []
 var collision := CollisionShape3D.new()
 var collision_shape = SphereShape3D.new()
 
-signal event_started
 signal event_finished(event:Event)
 
 #region GODOT FUNCTIONS
@@ -47,7 +45,7 @@ func _ready() -> void:
 	body_entered.connect(_on_body_entered)
 	body_exited.connect(_on_body_exited)
 	
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# Timer to finish event
 	await get_tree().create_timer(event_lifetime).timeout
 	for child:ActorPed in event_involved_npcs:
@@ -109,7 +107,7 @@ func _on_body_entered(body:Node3D):
 			if not event_involved_npcs.has(body):
 				event_involved_npcs.append(body)
 			body.nearby_events.append(self)
-			body.world_state.set("ai_has_event", true)
+			body.set_event(self)
 			
 		await get_tree().create_timer(1.0).timeout
 		raycast.queue_free()

@@ -3,7 +3,7 @@ class_name PedestrianState
 
 var actor:ActorPed = null
 var agent:FlowAIAgent3D
-var brain:Node
+var brain:PedestrianBrain
 
 func enter(): pass
 func exit(): pass

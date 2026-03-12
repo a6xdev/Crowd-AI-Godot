@@ -121,11 +121,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.005197434, 0.2904879, 0.011
 shape = SubResource("BoxShape3D_vn3mn")
 
 [node name="ParkBench_EventSlot_01" type="Marker3D" parent="."]
-transform = Transform3D(-1.0000002, 0, 8.7422784e-08, 0, 1.0000002, 0, -8.7422784e-08, 0, -1.0000002, -0.67626446, 0, 0.46310803)
+transform = Transform3D(-1.0000002, 0, 8.7422784e-08, 0, 1.0000002, 0, -8.7422784e-08, 0, -1.0000002, -0.67626446, 0, 0.52124816)
 script = ExtResource("12_3nqm3")
 metadata/_custom_type_script = "uid://b21ldp6ap5gbq"
 
 [node name="ParkBench_EventSlot_02" type="Marker3D" parent="."]
-transform = Transform3D(-1.0000002, 0, 8.7422826e-08, 0, 1.0000002, 0, -8.7422826e-08, 0, -1.0000002, 0.6326699, 0, 0.46310827)
+transform = Transform3D(-1.0000002, 0, 8.7422826e-08, 0, 1.0000002, 0, -8.7422826e-08, 0, -1.0000002, 0.6326699, 0, 0.5212484)
 script = ExtResource("12_3nqm3")
 metadata/_custom_type_script = "uid://b21ldp6ap5gbq"

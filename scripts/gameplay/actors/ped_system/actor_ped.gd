@@ -1,6 +1,8 @@
 extends CharacterBody3D
 class_name ActorPed
 
+@onready var pedestrian_brain: PedestrianBrain = $core/PedestrianBrain
+
 var move_dir:Vector3 = Vector3.ZERO
 var look_dir:Vector3 = Vector3.ZERO
 
@@ -29,6 +31,7 @@ var is_walking:bool = false
 var is_running:bool = false
 var is_sitting:bool = false
 var is_on_event:bool = false
+var is_in_smart_object:bool = false
 
 var nearby_bodies:Array[ActorPed] = []
 var nearby_smart_objects:Array[SmartObject] = []
@@ -40,7 +43,15 @@ var current_smart_object:SmartObject = null
 var current_action_slot:ActionSlot = null
 var current_event:Event = null
 
+signal _set_smart_object(smart_object:SmartObject)
+
 #region GODOT FUNCTIONS
+func _input(event: InputEvent) -> void:
+	if Input.is_action_just_pressed("d_action_01"):
+		var s_o = nearby_smart_objects.pick_random()
+		if s_o:
+			set_smart_object(s_o)
+
 func _physics_process(delta: float) -> void:
 	animation_controller()
 	movement_controller()
@@ -55,15 +66,17 @@ func _physics_process(delta: float) -> void:
 
 #region CONTROLLERS
 func animation_controller() -> void:
-	is_stopped = false if is_walking or is_running else true
-	
-	if velocity.length() > 3.0:
-		is_walking = false
-		is_running = true
-	elif velocity.length() > 1.0:
-		is_walking = true
-		is_running = false
+	var speed = velocity.length()
+	if speed > 0.2:
+		is_stopped = false
+		if speed > 3.0:
+			is_walking = false
+			is_running = true
+		else:
+			is_walking = true
+			is_running = false
 	else:
+		is_stopped = true
 		is_walking = false
 		is_running = false
 
@@ -83,18 +96,32 @@ func orientation_controller() -> void:
 	if velocity.length() > 0.5:
 		var to_target = atan2(move_dir.x, move_dir.z)
 		rotation.y = lerp_angle(rotation.y, to_target, 0.2)
+	else:
+		if current_event and is_on_event:
+			pass
 #endregion
 
 #region CALLS
 func set_event(event:Event) -> void:
-	match event.event_type:
-		Event.EventType.DANCE:
-			var slot = event.get_free_slot(self)
-		Event.EventType.AGRESSION:
-			var slot = event.get_free_slot(self)
+	_reset_actions()
+	
+	current_event = event
+	current_action_slot = event.get_free_slot(self)
+	if current_action_slot:
+		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.EVENT))
 
-func set_action(smart_object:SmartObject) -> void:
-	pass
+func set_smart_object(smart_object:SmartObject) -> void:
+	_reset_actions()
+	
+	current_smart_object = smart_object
+	current_action_slot = smart_object.get_empty_slot()
+	if current_action_slot:
+		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.SMART_OBJECT))
+
+func _reset_actions() -> void:
+	current_action_slot = null
+	current_smart_object = null
+	current_event = null
 
 func _get_avoidance_force() -> Vector3:
 	var avoidance_force := Vector3.ZERO
@@ -120,4 +147,14 @@ func _get_current_speed() -> float:
 		SpeedType.RUN:
 			return ped_run_speed
 	return 0.0
+#endregion
+
+#region SIGNALS
+func _on_nearby_smart_objects_body_entered(body: Node3D) -> void:
+	if body is SmartObject:
+		nearby_smart_objects.append(body)
+
+func _on_nearby_smart_objects_body_exited(body: Node3D) -> void:
+	if body is SmartObject:
+		nearby_smart_objects.erase(body)
 #endregion
