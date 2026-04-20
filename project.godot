@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="PedAI System"
-run/main_scene="uid://dugpcfhubpqy6"
+run/main_scene="uid://dkogiq8q88cm2"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -29,7 +29,6 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
-window/size/mode=3
 window/vsync/vsync_mode=0
 
 [editor_plugins]

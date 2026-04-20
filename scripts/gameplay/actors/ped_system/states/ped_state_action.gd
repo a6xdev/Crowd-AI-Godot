@@ -56,8 +56,10 @@ func update(_delta:float):
 			
 			if not current_action_slot: return
 			
+			var target_pos = current_action_slot.global_position
+			target_pos.y = actor.global_position.y
 			if actor.global_position != current_action_slot.global_position:
-				actor.global_position = lerp(actor.global_position, current_action_slot.global_position, 5.0 * _delta)
+				actor.global_position = lerp(actor.global_position, target_pos, 5.0 * _delta)
 			
 			if actor.current_smart_object:
 				actor.is_in_smart_object = true

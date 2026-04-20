@@ -30,10 +30,10 @@ enum SpeedType {
 var is_stopped:bool = false
 var is_walking:bool = false
 var is_running:bool = false
+var is_leaning_wall_back:bool = false
 var is_sitting:bool = false
 var is_on_event:bool = false
 var is_in_smart_object:bool = false
-
 var nearby_bodies:Array[ActorPed] = []
 var nearby_smart_objects:Array[SmartObject] = []
 var nearby_events:Array[Event] = []
@@ -51,8 +51,8 @@ func _ready() -> void:
 	var material_0 := StandardMaterial3D.new()
 	var material_1 := StandardMaterial3D.new()
 	
-	material_0.albedo_color = get_random_color()
-	material_1.albedo_color = get_random_color()
+	material_0.albedo_color = _get_random_color()
+	material_1.albedo_color = _get_random_color()
 	
 	mannequin_mesh.set_surface_override_material(0, material_0)
 	mannequin_mesh.set_surface_override_material(1, material_1)
@@ -72,21 +72,22 @@ func _physics_process(delta: float) -> void:
 #region CONTROLLERS
 func animation_controller() -> void:
 	var speed = velocity.length()
-	if speed > 0.2:
+	if speed < 0.2:
+		is_stopped = true
+		is_walking = false
+		is_running = false
+	else:
 		is_stopped = false
+		
 		if speed > 3.0:
 			is_walking = false
 			is_running = true
 		else:
 			is_walking = true
 			is_running = false
-	else:
-		is_stopped = true
-		is_walking = false
-		is_running = false
 
 func movement_controller() -> void:
-	if ped_can_move and not is_sitting and is_on_floor():
+	if ped_can_move and not is_sitting:
 		var avoidance_force = _get_avoidance_force()
 		var final_dir = move_dir
 		
@@ -131,7 +132,7 @@ func _reset_actions() -> void:
 	current_smart_object = null
 	current_event = null
 
-func get_random_color() -> Color:
+func _get_random_color() -> Color:
 	return Color(randf(), randf(), randf(), 1.0)
 
 func _get_avoidance_force() -> Vector3:
@@ -158,14 +159,23 @@ func _get_current_speed() -> float:
 		SpeedType.RUN:
 			return ped_run_speed
 	return 0.0
+
+func _snap_to_ground() -> void:
+	var space_state = get_world_3d().direct_space_state
+	var query = PhysicsRayQueryParameters3D.create(global_position + Vector3.UP * 2, global_position + Vector3.DOWN * 10)
+	var result = space_state.intersect_ray(query)
+	if result:
+		var collider = result.get("collider")
+		if collider is StaticBody3D:
+			global_position = result.position
 #endregion
 
 #region SIGNALS
-func _on_nearby_smart_objects_body_entered(body: Node3D) -> void:
-	if body is SmartObject:
-		nearby_smart_objects.append(body)
+func _on_nearby_smart_objects_area_entered(area: Area3D) -> void:
+	if area is SmartObject:
+		nearby_smart_objects.append(area)
 
-func _on_nearby_smart_objects_body_exited(body: Node3D) -> void:
-	if body is SmartObject:
-		nearby_smart_objects.erase(body)
+func _on_nearby_smart_objects_area_exited(area: Area3D) -> void:
+	if area is SmartObject:
+		nearby_smart_objects.erase(area)
 #endregion

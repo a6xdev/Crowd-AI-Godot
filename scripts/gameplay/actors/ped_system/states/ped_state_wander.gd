@@ -1,7 +1,7 @@
 extends PedestrianState
 class_name PedStateWander
 
-const MAX_PATH_COMPLETED_INDEX:int = 5
+const MAX_PATH_COMPLETED_INDEX:int = 3
 
 var path_completed_index:int = 0
 
