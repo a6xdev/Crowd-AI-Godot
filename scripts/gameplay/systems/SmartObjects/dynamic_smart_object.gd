@@ -1,3 +1,4 @@
+@tool
 extends SmartObject
 class_name DynamicSmartObject
 
@@ -7,24 +8,25 @@ enum DynamicActionType {
 	NONE
 }
 
-@export var action_type:DynamicActionType = DynamicActionType.NONE
+@export var action_type:DynamicActionType = DynamicActionType.LEAN_WALL_BACK
 
 var collision_shape := CollisionShape3D.new()
-var mesh := MeshInstance3D.new()
+var arrow := Arrow3D.new()
 var slot := ActionSlot.new()
 
-func _ready() -> void:
-	var box_mesh := BoxMesh.new()
-	box_mesh.size = Vector3(0.5, 0.5, 0.5)
-	
+func _enter_tree() -> void:
 	collision_shape.shape = BoxShape3D.new()
-	mesh.mesh = box_mesh
-	
 	add_child(collision_shape)
-	add_child(mesh)
-	add_child(slot)
-	
-	slots.append(slot)
+	add_child(arrow)
+
+func _exit_tree() -> void:
+	if arrow:
+		arrow.queue_free()
+
+func _ready() -> void:
+	if not Engine.is_editor_hint():
+		add_child(slot)
+		slots.append(slot)
 
 #region SYSTEM CALLS
 func perform_interaction(actor:ActorPed) -> bool:
@@ -39,5 +41,7 @@ func perform_interaction(actor:ActorPed) -> bool:
 # Get out of the smart objects
 func desperform_interaction(actor:ActorPed) -> bool:
 	actor.is_leaning_wall_back = false
+	for slot in slots:
+		slot.reset()
 	return false
 #endregion
