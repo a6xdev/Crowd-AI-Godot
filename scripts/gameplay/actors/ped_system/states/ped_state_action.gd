@@ -53,7 +53,6 @@ func update(_delta:float):
 	if have_slot_target:
 		if agent.is_navigation_finished():
 			actor.move_dir = Vector3.ZERO
-			
 			if not current_action_slot: return
 			
 			var target_pos = current_action_slot.global_position
@@ -71,7 +70,6 @@ func update(_delta:float):
 		else:
 			var target_pos = agent.get_next_path_position()
 			target_pos.y = actor.global_position.y
-			
 			actor.move_dir = (target_pos - actor.global_position).normalized()
 			actor.current_speed_type = ActorPed.SpeedType.WALK
 

@@ -124,7 +124,6 @@ func set_smart_object(smart_object:SmartObject) -> void:
 	current_smart_object = smart_object
 	current_action_slot = smart_object.get_empty_slot()
 	if current_action_slot:
-		print("opa")
 		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.SMART_OBJECT))
 
 func _reset_actions() -> void:
