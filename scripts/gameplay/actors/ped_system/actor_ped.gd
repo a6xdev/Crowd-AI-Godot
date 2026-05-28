@@ -126,6 +126,21 @@ func set_smart_object(smart_object:SmartObject) -> void:
 	if current_action_slot:
 		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.SMART_OBJECT))
 
+func ped_reset() -> void:
+	_reset_actions()
+	ped_can_move = true
+	ped_can_rotate_body = true
+	current_event = null
+	if current_smart_object:
+		current_smart_object.desperform_interaction(self)
+		current_smart_object = null
+	current_action_slot = null
+	is_leaning_wall_back = false
+	is_on_event = false
+	is_in_smart_object = false
+	is_sitting = false
+	global_rotation = Vector3.ZERO
+
 func _reset_actions() -> void:
 	current_action_slot = null
 	current_smart_object = null
@@ -136,19 +151,15 @@ func _get_random_color() -> Color:
 
 func _get_avoidance_force() -> Vector3:
 	var avoidance_force := Vector3.ZERO
-	
 	for body in nearby_bodies:
 		if not is_instance_valid(body): 
 			continue
-			
 		var to_body:Vector3 = body.global_position - global_position
 		var d: float = to_body.length()
 		var away = (global_position - body.global_position).normalized()
 		var strength = (avoidance_radius - d) / avoidance_radius
 		var side_step = away.cross(Vector3.UP) * 0.2
-		
 		avoidance_force += (away + side_step) * strength * avoidance_strength
-			
 	return avoidance_force
 
 func _get_current_speed() -> float:

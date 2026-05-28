@@ -1,6 +1,6 @@
 extends Node
 
-var PedSpawnerControllerNode:PedSpawnerController = null
+var PedsSpawnerControllerNode:PedsSpawnerController = null
 var PlayerRef:Player = null
 
 var all_peds:Array[ActorPed] = []

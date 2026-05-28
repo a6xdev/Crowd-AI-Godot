@@ -14,7 +14,8 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="PedAI System"
+config/name="Pedestrian AI System"
+config/version="1.0.0"
 run/main_scene="uid://b0ap1pvam2dj7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
@@ -24,6 +25,7 @@ config/icon="res://icon.svg"
 World="*res://scripts/core/globals/World.gd"
 NpcManager="*res://scripts/core/globals/NpcManager.gd"
 FlowAIDebugDraw="*uid://catwdltf1rfju"
+DebugMenu="*uid://cggqb75a8w8r"
 
 [debug_draw_3d]
 
@@ -33,11 +35,12 @@ settings/addon_root_folder="res://addons/debug_draw_3d"
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
+window/size/mode=3
 window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/FlowAI/plugin.cfg")
+enabled=PackedStringArray("res://addons/FlowAI/plugin.cfg", "res://addons/debug_menu/plugin.cfg")
 
 [input]
 
@@ -103,6 +106,7 @@ d_reload_npcs={
 3d_physics/layer_2="Player"
 3d_physics/layer_3="NPC"
 3d_physics/layer_4="Item"
+3d_physics/layer_5="NoCollisionToNpc"
 
 [physics]
 

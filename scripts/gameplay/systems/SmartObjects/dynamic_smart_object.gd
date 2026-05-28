@@ -15,13 +15,13 @@ var arrow := Arrow3D.new()
 var slot := ActionSlot.new()
 
 func _enter_tree() -> void:
+	for child in get_children():
+		if child is CollisionShape3D:
+			return
+	
 	collision_shape.shape = BoxShape3D.new()
 	add_child(collision_shape)
 	add_child(arrow)
-
-func _exit_tree() -> void:
-	if arrow:
-		arrow.queue_free()
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():

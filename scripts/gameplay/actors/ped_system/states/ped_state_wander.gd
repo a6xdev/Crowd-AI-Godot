@@ -18,9 +18,10 @@ func update(_delta:float):
 		path_completed_index += 1
 		index_already_gone_up = true
 		if path_completed_index >= MAX_PATH_COMPLETED_INDEX and not actor.nearby_smart_objects.is_empty():
-			var obj_smart_lol = actor.nearby_smart_objects.pick_random()
+			var obj_smart_obj = actor.nearby_smart_objects.pick_random()
 			path_completed_index = 0
-			if obj_smart_lol and obj_smart_lol: actor.set_smart_object(obj_smart_lol)
+			if obj_smart_obj:
+				actor.set_smart_object(obj_smart_obj)
 		else:
 			agent.get_random_path()
 			index_already_gone_up = false

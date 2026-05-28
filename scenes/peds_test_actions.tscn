@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://u3yi40tfdo5x"]
+
+[ext_resource type="Script" uid="uid://dd5lfsdhb8jrr" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="1_ia820"]
+[ext_resource type="PackedScene" uid="uid://j5nwodo50yh3" path="res://assets/prefabs/characters/actor_player.tscn" id="1_tslnw"]
+[ext_resource type="Texture2D" uid="uid://cxuejfat7wko5" path="res://assets/textures/GroundPrototype/dark/texture_08.png" id="1_yigyc"]
+[ext_resource type="Script" uid="uid://cf0y76r5hyivm" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="2_3c41r"]
+[ext_resource type="PackedScene" uid="uid://cor842snoqhpm" path="res://assets/prefabs/characters/actor_ped.tscn" id="2_jxhjd"]
+[ext_resource type="Script" uid="uid://bs3dikeebb8j7" path="res://addons/FlowAI/scripts/resources/FlowAIAreaData.gd" id="3_l0euq"]
+[ext_resource type="Script" uid="uid://c750mtb583ysx" path="res://addons/FlowAI/scripts/runtime/FlowAIPathNode.gd" id="4_tslnw"]
+[ext_resource type="Script" uid="uid://c7lpajlx84dd8" path="res://addons/FlowAI/scripts/resources/FlowAIPathNodeData.gd" id="5_jxhjd"]
+[ext_resource type="PackedScene" uid="uid://cbwfdst4hd6qq" path="res://assets/prefabs/environments/cafe_pack/obj_cafe_table.tscn" id="7_l0euq"]
+[ext_resource type="PackedScene" uid="uid://ltexob8rdcol" path="res://assets/prefabs/environments/smart_objects/so_cafe_chair.tscn" id="8_tslnw"]
+[ext_resource type="Script" uid="uid://nll4frg1vfab" path="res://scripts/gameplay/systems/SmartObjects/dynamic_smart_object.gd" id="11_pkv88"]
+
+[sub_resource type="Resource" id="Resource_pkv88"]
+script = ExtResource("3_l0euq")
+a_id = 1
+
+[sub_resource type="Resource" id="Resource_ungc5"]
+script = ExtResource("5_jxhjd")
+p_id = "1_0"
+p_area_id = 1
+p_links = ["1_1", "1_2", "1_3", "1_4"]
+
+[sub_resource type="Resource" id="Resource_vhp3m"]
+script = ExtResource("5_jxhjd")
+p_id = "1_1"
+p_area_id = 1
+p_prev_pathnode = "1_0"
+
+[sub_resource type="Resource" id="Resource_gxchj"]
+script = ExtResource("5_jxhjd")
+p_id = "1_2"
+p_area_id = 1
+p_prev_pathnode = "1_0"
+
+[sub_resource type="Resource" id="Resource_r3mrt"]
+script = ExtResource("5_jxhjd")
+p_id = "1_3"
+p_area_id = 1
+p_prev_pathnode = "1_0"
+
+[sub_resource type="Resource" id="Resource_mwmyy"]
+script = ExtResource("5_jxhjd")
+p_id = "1_4"
+p_area_id = 1
+p_prev_pathnode = "1_0"
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_jxhjd"]
+vertices = PackedVector3Array(3.75, 0.4, 4.5, 3.75, 0.4, 2.75, 2.25, 0.4, 4.25, 3.75, 0.4, -2.25, 4.5, 0.4, -2.5, 4.5, 0.4, -4.5, 1, 0.4, 4.25, -4.5, 0.4, 4.5, 1.75, 0.4, 1.5, 3.75, 0.4, 1, 0.75, 0.4, 2.75, -4.5, 0.4, -4.5)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 6), PackedInt32Array(6, 0, 7), PackedInt32Array(3, 9, 8), PackedInt32Array(8, 10, 3), PackedInt32Array(3, 10, 5), PackedInt32Array(5, 10, 11), PackedInt32Array(11, 10, 7), PackedInt32Array(6, 7, 10)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_luf6t"]
+size = Vector2(10, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xp30f"]
+albedo_texture = ExtResource("1_yigyc")
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_ef7ge"]
+data = PackedVector3Array(5, 0, 5, -5, 0, 5, 5, 0, -5, -5, 0, 5, -5, 0, -5, 5, 0, -5)
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yhdoh"]
+
+[sub_resource type="Sky" id="Sky_41a76"]
+sky_material = SubResource("ProceduralSkyMaterial_yhdoh")
+
+[sub_resource type="Environment" id="Environment_ia820"]
+background_mode = 2
+sky = SubResource("Sky_41a76")
+
+[node name="ped_test_actions" type="Node3D" unique_id=596453175]
+
+[node name="actor" type="Node" parent="." unique_id=887222582]
+
+[node name="actor_player" parent="actor" unique_id=1478289265 instance=ExtResource("1_tslnw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+
+[node name="actor_ped" parent="actor" unique_id=1266712149 instance=ExtResource("2_jxhjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 2)
+
+[node name="actor_ped2" parent="actor" unique_id=1919529974 instance=ExtResource("2_jxhjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="actor_ped3" parent="actor" unique_id=1750956421 instance=ExtResource("2_jxhjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, -2)
+
+[node name="actor_ped4" parent="actor" unique_id=1531195627 instance=ExtResource("2_jxhjd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="map" type="Node" parent="." unique_id=538598840]
+
+[node name="FlowAIController" type="Node" parent="map" unique_id=1231118053]
+script = ExtResource("1_ia820")
+metadata/_custom_type_script = "uid://dd5lfsdhb8jrr"
+
+[node name="area_1" type="Node3D" parent="map/FlowAIController" unique_id=1732589099 node_paths=PackedStringArray("a_flow_controller")]
+script = ExtResource("2_3c41r")
+a_data = SubResource("Resource_pkv88")
+a_flow_controller = NodePath("..")
+
+[node name="pathnode_1_0" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1220374210 node_paths=PackedStringArray("p_flow_controller")]
+script = ExtResource("4_tslnw")
+p_data = SubResource("Resource_ungc5")
+p_flow_controller = NodePath("../..")
+
+[node name="pathnode_1_1" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1023047840 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+script = ExtResource("4_tslnw")
+p_data = SubResource("Resource_vhp3m")
+p_flow_controller = NodePath("../..")
+
+[node name="pathnode_1_2" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1037456605 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 0)
+script = ExtResource("4_tslnw")
+p_data = SubResource("Resource_gxchj")
+p_flow_controller = NodePath("../..")
+
+[node name="pathnode_1_3" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=596401955 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+script = ExtResource("4_tslnw")
+p_data = SubResource("Resource_r3mrt")
+p_flow_controller = NodePath("../..")
+
+[node name="pathnode_1_4" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=241279372 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 4)
+script = ExtResource("4_tslnw")
+p_data = SubResource("Resource_mwmyy")
+p_flow_controller = NodePath("../..")
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="map" unique_id=782631009]
+navigation_mesh = SubResource("NavigationMesh_jxhjd")
+
+[node name="plane" type="MeshInstance3D" parent="map/NavigationRegion3D" unique_id=1828119061]
+mesh = SubResource("PlaneMesh_luf6t")
+skeleton = NodePath("../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_xp30f")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="map/NavigationRegion3D/plane" unique_id=372091516]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="map/NavigationRegion3D/plane/StaticBody3D" unique_id=1006084450]
+shape = SubResource("ConcavePolygonShape3D_ef7ge")
+
+[node name="obj_cafe_table" parent="map/NavigationRegion3D" unique_id=2128676444 instance=ExtResource("7_l0euq")]
+transform = Transform3D(0.09112188, 0, 0.749481, 0, 0.755, 0, -0.749481, 0, 0.09112188, 2.3770585, 0, 2.6563797)
+
+[node name="obj_cafe_chair" parent="map/NavigationRegion3D" unique_id=1013096838 instance=ExtResource("8_tslnw")]
+transform = Transform3D(-0.9983166, 0, -0.057999626, 0, 1, 0, 0.057999626, 0, -0.9983166, 1.656127, 0, 3.4792485)
+
+[node name="obj_cafe_chair2" parent="map/NavigationRegion3D" unique_id=896181127 instance=ExtResource("8_tslnw")]
+transform = Transform3D(0.18976384, 0, -0.9818298, 0, 1, 0, 0.9818298, 0, 0.18976384, 3.1863718, 2.3841858e-07, 1.9729457)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=902273046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.9158325, 1.8505859, 1.1239319)
+use_collision = true
+size = Vector3(1, 3.7011719, 5.9901733)
+
+[node name="DynamicSmartObject" type="Area3D" parent="map/NavigationRegion3D" unique_id=721286225]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.9291449, 0, 0.54844105)
+script = ExtResource("11_pkv88")
+metadata/_custom_type_script = "uid://nll4frg1vfab"
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1090281168]
+environment = SubResource("Environment_ia820")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=2133289023]
+transform = Transform3D(1, 0, 0, 0, 0.76854044, 0.63980126, 0, -0.63980126, 0.76854044, 0, 0, 0)
+shadow_enabled = true
