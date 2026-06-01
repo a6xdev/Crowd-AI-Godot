@@ -1,139 +1,110 @@
 [gd_scene format=3 uid="uid://b0ap1pvam2dj7"]
 
-[ext_resource type="Texture2D" uid="uid://cxuejfat7wko5" path="res://assets/textures/GroundPrototype/dark/texture_08.png" id="1_njufr"]
-[ext_resource type="PackedScene" uid="uid://j5nwodo50yh3" path="res://assets/prefabs/characters/actor_player.tscn" id="1_x828h"]
-[ext_resource type="Script" uid="uid://dd5lfsdhb8jrr" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="2_hyg2r"]
-[ext_resource type="PackedScene" uid="uid://c8ss606rlj773" path="res://assets/prefabs/environments/smart_objects/so_park_bench.tscn" id="3_cc4bk"]
-[ext_resource type="Script" uid="uid://cf0y76r5hyivm" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="3_w2n3q"]
-[ext_resource type="Script" uid="uid://bs3dikeebb8j7" path="res://addons/FlowAI/scripts/resources/FlowAIAreaData.gd" id="4_cc4bk"]
-[ext_resource type="Script" uid="uid://c750mtb583ysx" path="res://addons/FlowAI/scripts/runtime/FlowAIPathNode.gd" id="5_c4isg"]
-[ext_resource type="Script" uid="uid://c7lpajlx84dd8" path="res://addons/FlowAI/scripts/resources/FlowAIPathNodeData.gd" id="6_gp1q1"]
-[ext_resource type="Script" uid="uid://c8oqvjek0jr6i" path="res://scripts/core/systems/PedSpawner/PedsSpawnerSlot.gd" id="10_gp1q1"]
-[ext_resource type="PackedScene" uid="uid://cbwfdst4hd6qq" path="res://assets/prefabs/environments/cafe_pack/obj_cafe_table.tscn" id="11_1g3q8"]
-[ext_resource type="Script" uid="uid://mk0cs7tsd178" path="res://scripts/core/systems/PedSpawner/PedsSpawnerController.gd" id="11_5by5t"]
-[ext_resource type="PackedScene" uid="uid://ltexob8rdcol" path="res://assets/prefabs/environments/smart_objects/so_cafe_chair.tscn" id="12_puuv5"]
+[ext_resource type="PackedScene" uid="uid://j5nwodo50yh3" path="res://assets/prefabs/characters/actor_player.tscn" id="1_vbp7o"]
+[ext_resource type="Script" uid="uid://c8oqvjek0jr6i" path="res://scripts/core/systems/PedSpawner/PedsSpawnerSlot.gd" id="2_wmrpf"]
+[ext_resource type="Script" uid="uid://dd5lfsdhb8jrr" path="res://addons/FlowAI/scripts/core/FlowAIController.gd" id="3_ry6u3"]
+[ext_resource type="Script" uid="uid://cf0y76r5hyivm" path="res://addons/FlowAI/scripts/runtime/FlowAIAreaNode.gd" id="4_kc5bp"]
+[ext_resource type="Script" uid="uid://bs3dikeebb8j7" path="res://addons/FlowAI/scripts/resources/FlowAIAreaData.gd" id="5_tfmrl"]
+[ext_resource type="Script" uid="uid://c750mtb583ysx" path="res://addons/FlowAI/scripts/runtime/FlowAIPathNode.gd" id="6_m8wem"]
+[ext_resource type="Script" uid="uid://c7lpajlx84dd8" path="res://addons/FlowAI/scripts/resources/FlowAIPathNodeData.gd" id="7_wbamy"]
+[ext_resource type="Texture2D" uid="uid://cxuejfat7wko5" path="res://assets/textures/GroundPrototype/dark/texture_08.png" id="8_k1rud"]
+[ext_resource type="PackedScene" uid="uid://c8ss606rlj773" path="res://assets/prefabs/environments/smart_objects/so_park_bench.tscn" id="9_6d2qi"]
+[ext_resource type="PackedScene" uid="uid://cbwfdst4hd6qq" path="res://assets/prefabs/environments/cafe_pack/obj_cafe_table.tscn" id="10_stx0r"]
+[ext_resource type="PackedScene" uid="uid://ltexob8rdcol" path="res://assets/prefabs/environments/smart_objects/so_cafe_chair.tscn" id="11_jpmkr"]
+[ext_resource type="PackedScene" uid="uid://daiijmnerkto5" path="res://assets/prefabs/environments/oaktrees/oaktrees.tscn" id="12_7aduw"]
+[ext_resource type="Script" uid="uid://nll4frg1vfab" path="res://scripts/gameplay/systems/SmartObjects/dynamic_smart_object.gd" id="12_wmrpf"]
+[ext_resource type="Script" uid="uid://mk0cs7tsd178" path="res://scripts/core/systems/PedSpawner/PedsSpawnerController.gd" id="13_stqrf"]
 
 [sub_resource type="Resource" id="Resource_5by5t"]
-script = ExtResource("4_cc4bk")
+script = ExtResource("5_tfmrl")
 a_id = 1
 
 [sub_resource type="Resource" id="Resource_1g3q8"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_0"
 p_area_id = 1
 p_links = ["1_1", "1_2", "1_3", "1_4", "1_5", "1_6", "1_7", "1_8"]
 
 [sub_resource type="Resource" id="Resource_puuv5"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_1"
 p_area_id = 1
 p_prev_pathnode = "1_0"
-p_links = ["1_2", "1_9"]
+p_links = ["1_2"]
 
 [sub_resource type="Resource" id="Resource_5c24b"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_2"
 p_area_id = 1
 p_prev_pathnode = "1_1"
-p_links = ["1_3", "1_15"]
+p_links = ["1_3", "1_11"]
 
 [sub_resource type="Resource" id="Resource_5o3ri"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_3"
 p_area_id = 1
 p_prev_pathnode = "1_2"
-p_links = ["1_4", "1_10"]
+p_links = ["1_4", "1_9"]
 
 [sub_resource type="Resource" id="Resource_e1fp3"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_4"
 p_area_id = 1
 p_prev_pathnode = "1_3"
-p_links = ["1_5", "1_14"]
+p_links = ["1_5"]
 
 [sub_resource type="Resource" id="Resource_ryf4v"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_5"
 p_area_id = 1
 p_prev_pathnode = "1_4"
-p_links = ["1_6", "1_11"]
+p_links = ["1_6"]
 
 [sub_resource type="Resource" id="Resource_ovd1j"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_6"
 p_area_id = 1
 p_prev_pathnode = "1_5"
-p_links = ["1_7", "1_13"]
+p_links = ["1_7", "1_12"]
 
 [sub_resource type="Resource" id="Resource_ek6dm"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_7"
 p_area_id = 1
 p_prev_pathnode = "1_6"
-p_links = ["1_8", "1_12"]
+p_links = ["1_8"]
 
 [sub_resource type="Resource" id="Resource_8nnoo"]
-script = ExtResource("6_gp1q1")
+script = ExtResource("7_wbamy")
 p_id = "1_8"
 p_area_id = 1
 p_prev_pathnode = "1_7"
 p_links = ["1_1"]
 
-[sub_resource type="Resource" id="Resource_c4isg"]
-script = ExtResource("6_gp1q1")
+[sub_resource type="Resource" id="Resource_vbp7o"]
+script = ExtResource("7_wbamy")
 p_id = "1_9"
 p_area_id = 1
-p_prev_pathnode = "1_1"
-p_links = ["1_16"]
-
-[sub_resource type="Resource" id="Resource_gp1q1"]
-script = ExtResource("6_gp1q1")
-p_id = "1_10"
-p_area_id = 1
 p_prev_pathnode = "1_3"
-p_links = ["1_15"]
-
-[sub_resource type="Resource" id="Resource_ebx4e"]
-script = ExtResource("6_gp1q1")
-p_id = "1_11"
-p_area_id = 1
-p_prev_pathnode = "1_5"
-p_links = ["1_14"]
-
-[sub_resource type="Resource" id="Resource_nb7o2"]
-script = ExtResource("6_gp1q1")
-p_id = "1_12"
-p_area_id = 1
-p_prev_pathnode = "1_7"
-p_links = ["1_13"]
-
-[sub_resource type="Resource" id="Resource_wwo23"]
-script = ExtResource("6_gp1q1")
-p_id = "1_13"
-p_area_id = 1
-p_prev_pathnode = "1_12"
-p_links = ["1_11"]
-
-[sub_resource type="Resource" id="Resource_fastm"]
-script = ExtResource("6_gp1q1")
-p_id = "1_14"
-p_area_id = 1
-p_prev_pathnode = "1_11"
 p_links = ["1_10"]
 
-[sub_resource type="Resource" id="Resource_v8t0c"]
-script = ExtResource("6_gp1q1")
-p_id = "1_15"
-p_area_id = 1
-p_prev_pathnode = "1_10"
-p_links = ["1_9"]
-
-[sub_resource type="Resource" id="Resource_oorn1"]
-script = ExtResource("6_gp1q1")
-p_id = "1_16"
+[sub_resource type="Resource" id="Resource_wmrpf"]
+script = ExtResource("7_wbamy")
+p_id = "1_10"
 p_area_id = 1
 p_prev_pathnode = "1_9"
-p_links = ["1_12", "1_8"]
+
+[sub_resource type="Resource" id="Resource_ry6u3"]
+script = ExtResource("7_wbamy")
+p_id = "1_11"
+p_area_id = 1
+p_prev_pathnode = "1_2"
+
+[sub_resource type="Resource" id="Resource_kc5bp"]
+script = ExtResource("7_wbamy")
+p_id = "1_12"
+p_area_id = 1
+p_prev_pathnode = "1_6"
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_cc4bk"]
 
@@ -141,7 +112,7 @@ p_links = ["1_12", "1_8"]
 size = Vector2(100, 100)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r0wv7"]
-albedo_texture = ExtResource("1_njufr")
+albedo_texture = ExtResource("8_k1rud")
 uv1_triplanar = true
 
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_g2d2a"]
@@ -160,14 +131,14 @@ sky = SubResource("Sky_5by5t")
 
 [node name="actor" type="Node" parent="." unique_id=1289241627]
 
-[node name="actor_player" parent="actor" unique_id=201296063 instance=ExtResource("1_x828h")]
+[node name="actor_player" parent="actor" unique_id=201296063 instance=ExtResource("1_vbp7o")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="PedSpawnerSlots" type="Node" parent="actor" unique_id=746084151]
 
 [node name="PedSpawnerSlot" type="Marker3D" parent="actor/PedSpawnerSlots" unique_id=1760930534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.6326215)
-script = ExtResource("10_gp1q1")
+script = ExtResource("2_wmrpf")
 metadata/_custom_type_script = "uid://c8oqvjek0jr6i"
 
 [node name="peds" type="Node" parent="actor" unique_id=343199220]
@@ -177,113 +148,89 @@ metadata/_custom_type_script = "uid://c8oqvjek0jr6i"
 [node name="map" type="Node" parent="." unique_id=1659746625]
 
 [node name="FlowAIController" type="Node" parent="map" unique_id=1601160765]
-script = ExtResource("2_hyg2r")
+script = ExtResource("3_ry6u3")
 metadata/_custom_type_script = "uid://dd5lfsdhb8jrr"
 
 [node name="area_1" type="Node3D" parent="map/FlowAIController" unique_id=117193297 node_paths=PackedStringArray("a_flow_controller")]
-script = ExtResource("3_w2n3q")
+script = ExtResource("4_kc5bp")
 a_data = SubResource("Resource_5by5t")
 a_flow_controller = NodePath("..")
 
 [node name="pathnode_1_0" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=245040092 node_paths=PackedStringArray("p_flow_controller")]
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_1g3q8")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_1" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=146231411 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 0)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_puuv5")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_2" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1702070495 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_5c24b")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_3" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1868147925 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_5o3ri")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_4" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=647826007 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_e1fp3")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_5" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=830016420 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 0)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_ryf4v")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_6" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=904146736 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_ovd1j")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_7" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=2098808432 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_ek6dm")
 p_flow_controller = NodePath("../..")
 
 [node name="pathnode_1_8" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1297085782 node_paths=PackedStringArray("p_flow_controller")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -5)
-script = ExtResource("5_c4isg")
+script = ExtResource("6_m8wem")
 p_data = SubResource("Resource_8nnoo")
 p_flow_controller = NodePath("../..")
 
-[node name="pathnode_1_9" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1475734490 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_c4isg")
+[node name="pathnode_1_9" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=481528765 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0583198, 0, 12)
+script = ExtResource("6_m8wem")
+p_data = SubResource("Resource_vbp7o")
 p_flow_controller = NodePath("../..")
 
-[node name="pathnode_1_10" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1095186839 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_gp1q1")
+[node name="pathnode_1_10" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=116981406 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0583198, 0, 12)
+script = ExtResource("6_m8wem")
+p_data = SubResource("Resource_wmrpf")
 p_flow_controller = NodePath("../..")
 
-[node name="pathnode_1_11" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=787953020 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 0)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_ebx4e")
+[node name="pathnode_1_11" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=373263118 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.692553, 0, 9.430866)
+script = ExtResource("6_m8wem")
+p_data = SubResource("Resource_ry6u3")
 p_flow_controller = NodePath("../..")
 
-[node name="pathnode_1_12" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=251008626 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -24)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_nb7o2")
-p_flow_controller = NodePath("../..")
-
-[node name="pathnode_1_13" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1171339770 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -24)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_wwo23")
-p_flow_controller = NodePath("../..")
-
-[node name="pathnode_1_14" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1565687831 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, 24)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_fastm")
-p_flow_controller = NodePath("../..")
-
-[node name="pathnode_1_15" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=99037456 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 25)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_v8t0c")
-p_flow_controller = NodePath("../..")
-
-[node name="pathnode_1_16" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1887628037 node_paths=PackedStringArray("p_flow_controller")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, -24)
-script = ExtResource("5_c4isg")
-p_data = SubResource("Resource_oorn1")
+[node name="pathnode_1_12" type="Marker3D" parent="map/FlowAIController/area_1" unique_id=1066141195 node_paths=PackedStringArray("p_flow_controller")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3818374, 0, -8.919516)
+script = ExtResource("6_m8wem")
+p_data = SubResource("Resource_kc5bp")
 p_flow_controller = NodePath("../..")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="map" unique_id=1430387248]
@@ -301,40 +248,51 @@ shape = SubResource("ConcavePolygonShape3D_g2d2a")
 
 [node name="smart_objects" type="Node" parent="map/NavigationRegion3D" unique_id=1441965234]
 
-[node name="so_park_bench" parent="map/NavigationRegion3D/smart_objects" unique_id=650657018 instance=ExtResource("3_cc4bk")]
-transform = Transform3D(1.325, 0, 0, 0, 1.325, 0, 0, 0, 1.325, -4.136891, 0, -8)
+[node name="so_park_bench" parent="map/NavigationRegion3D/smart_objects" unique_id=650657018 instance=ExtResource("9_6d2qi")]
+transform = Transform3D(-5.7917592e-08, 0, 1.325, 0, 1.325, 0, -1.325, 0, -5.7917592e-08, -6.4941792, 0, -0.033304214)
 
-[node name="obj_cafe_table" parent="map/NavigationRegion3D/smart_objects" unique_id=2128676444 instance=ExtResource("11_1g3q8")]
+[node name="so_park_bench2" parent="map/NavigationRegion3D/smart_objects" unique_id=1447838123 instance=ExtResource("9_6d2qi")]
+transform = Transform3D(-5.7917592e-08, 0, 1.325, 0, 1.325, 0, -1.325, 0, -5.7917592e-08, -6.4941792, 0, -0.033304214)
+
+[node name="so_park_bench3" parent="map/NavigationRegion3D/smart_objects" unique_id=1678719122 instance=ExtResource("9_6d2qi")]
+transform = Transform3D(1.325, 0, 0, 0, 1.325, 0, 0, 0, 1.325, -0.5335889, 0, -7.152912)
+
+[node name="obj_cafe_table" parent="map/NavigationRegion3D/smart_objects" unique_id=2128676444 instance=ExtResource("10_stx0r")]
 transform = Transform3D(0.12069124, 0, 0.9926901, 0, 1, 0, -0.9926901, 0, 0.12069124, 1.8784354, 0, 7.3553)
 
-[node name="obj_cafe_chair" parent="map/NavigationRegion3D/smart_objects" unique_id=1013096838 instance=ExtResource("12_puuv5")]
-transform = Transform3D(0.019511499, 0, -0.9998097, 0, 1, 0, 0.9998097, 0, 0.019511499, 0.92306304, 0, 8.175769)
+[node name="obj_cafe_chair" parent="map/NavigationRegion3D/smart_objects" unique_id=1013096838 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(-0.99333066, 0, -0.11530118, 0, 1, 0, 0.11530118, 0, -0.99333066, 1.0727679, 0, 8.151766)
 
-[node name="obj_cafe_chair2" parent="map/NavigationRegion3D/smart_objects" unique_id=1829064790 instance=ExtResource("12_puuv5")]
-transform = Transform3D(0.861824, 0, 0.5072074, 0, 1, 0, -0.5072074, 0, 0.861824, 2.7991745, 0, 6.2975416)
+[node name="obj_cafe_chair2" parent="map/NavigationRegion3D/smart_objects" unique_id=1829064790 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(0.33443192, 0, -0.9424199, 0, 1, 0, 0.9424199, 0, 0.33443192, 2.9575288, 0, 6.558075)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=1803068892]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.852478, 2.8532715, 3.3402414)
+[node name="obj_cafe_table2" parent="map/NavigationRegion3D/smart_objects" unique_id=1622643223 instance=ExtResource("10_stx0r")]
+transform = Transform3D(0.669125, -0.0040666056, 0.74313873, 0.0027210906, 0.9999917, 0.0030220777, -0.74314487, 0, 0.66913056, 4.6510887, -0.00030394757, 9.304041)
+
+[node name="obj_cafe_chair3" parent="map/NavigationRegion3D/smart_objects" unique_id=94519460 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(-0.7117494, -0.0039056304, 0.70242274, -0.0035755965, 0.9999917, 0.0019371104, -0.70242447, -0.0011328426, -0.7117575, 3.3176017, -0.004846441, 9.633191)
+
+[node name="obj_cafe_chair4" parent="map/NavigationRegion3D/smart_objects" unique_id=1425090634 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(-0.98262566, -0.0003426895, 0.1855988, -0.001088805, 0.99999183, -0.003918136, -0.18559586, -0.004052142, -0.98261774, 4.2309384, 0.0051503913, 10.636624)
+
+[node name="obj_cafe_chair5" parent="map/NavigationRegion3D/smart_objects" unique_id=1605055124 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(0.71174943, 0.003905631, -0.7024227, -0.0035755965, 0.9999917, 0.0019371104, 0.7024244, 0.0011328422, 0.71175754, 5.7251844, -0.004846441, 8.9291725)
+
+[node name="obj_cafe_chair6" parent="map/NavigationRegion3D/smart_objects" unique_id=1189437003 instance=ExtResource("11_jpmkr")]
+transform = Transform3D(0.98262566, 0.00034268975, -0.18559872, -0.001088805, 0.99999183, -0.003918136, 0.18559575, 0.004052142, 0.98261774, 4.8118477, 0.0051503913, 7.9257393)
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=623794362]
+transform = Transform3D(-0.49999994, 0, -0.8660254, 0, 1, 0, 0.8660254, 0, -0.49999994, 6.9555445, 4.7125244, 13.589202)
 use_collision = true
-size = Vector3(16.383667, 5.706543, 3.5028076)
+size = Vector3(5.096878, 9.425049, 4.6193542)
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=1812070922]
-transform = Transform3D(0.70710677, 0, -0.70710677, 0, 1, 0, 0.70710677, 0, 0.70710677, 15.656092, 4.7125244, 12.478805)
+[node name="CSGBox3D10" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=1410993792]
+transform = Transform3D(-1, 0, -2.9802322e-08, 0, 1, 0, 2.9802322e-08, 0, -1, 4.356305, 4.7125235, 15.018938)
 use_collision = true
-size = Vector3(16.383667, 9.425049, 3.5028076)
+size = Vector3(7.763233, 9.425049, 3.6844177)
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=228302738]
 transform = Transform3D(0.9996439, 0, 0.026682958, 0, 1, 0, -0.026682958, 0, 0.9996439, -9.348791, 2.8532715, -21.561596)
-use_collision = true
-size = Vector3(16.383667, 5.706543, 3.5028076)
-
-[node name="CSGBox3D4" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=129219572]
-transform = Transform3D(0.7291477, 0, -0.68435603, 0, 1, 0, 0.68435603, 0, 0.7291477, -7.2713823, 2.8532715, -11.171276)
-use_collision = true
-size = Vector3(16.383667, 5.706543, 3.5028076)
-
-[node name="CSGBox3D5" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=1313528061]
-transform = Transform3D(0.6879873, 0, 0.7257228, 0, 1, 0, -0.7257228, 0, 0.6879873, -9.863772, 2.8532705, 13.427692)
 use_collision = true
 size = Vector3(16.383667, 5.706543, 3.5028076)
 
@@ -353,8 +311,34 @@ transform = Transform3D(0.031672448, 0, -0.9994979, 0, 1, 0, 0.9994979, 0, 0.031
 use_collision = true
 size = Vector3(9.777771, 5.706543, 3.5028076)
 
+[node name="CSGBox3D" type="CSGBox3D" parent="map/NavigationRegion3D" unique_id=616919834]
+transform = Transform3D(0.99993694, 0, -0.011204695, 0, 1, 0, 0.011204695, 0, 0.99993694, -3.108873, 0.48892558, 11.655095)
+use_collision = true
+size = Vector3(3.0477295, 1, 0.43896484)
+
+[node name="DynamicSmartObject" type="Area3D" parent="map/NavigationRegion3D/CSGBox3D" unique_id=1031139543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0066428, -0.39976478, -0.01128006)
+script = ExtResource("12_wmrpf")
+metadata/_custom_type_script = "uid://nll4frg1vfab"
+
+[node name="DynamicSmartObject2" type="Area3D" parent="map/NavigationRegion3D/CSGBox3D" unique_id=681399287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006705284, -0.39976478, -7.534027e-05)
+script = ExtResource("12_wmrpf")
+metadata/_custom_type_script = "uid://nll4frg1vfab"
+
+[node name="DynamicSmartObject3" type="Area3D" parent="map/NavigationRegion3D/CSGBox3D" unique_id=1194155242]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.99323297, -0.39976478, 0.011129379)
+script = ExtResource("12_wmrpf")
+metadata/_custom_type_script = "uid://nll4frg1vfab"
+
+[node name="oaktrees" parent="map/NavigationRegion3D" unique_id=43203380 instance=ExtResource("12_7aduw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2476666, 0.0593352, 10.595354)
+
+[node name="oaktrees2" parent="map/NavigationRegion3D" unique_id=197820656 instance=ExtResource("12_7aduw")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.837741, 0.0593352, -4.2888184)
+
 [node name="PedSpawnerController" type="Node" parent="." unique_id=325684882 node_paths=PackedStringArray("SpawnerSlotsPath", "SpawnerNpcPath", "PedsGroupsPath", "FlowAIControllerNode")]
-script = ExtResource("11_5by5t")
+script = ExtResource("13_stqrf")
 SpawnerSlotsPath = NodePath("../actor/PedSpawnerSlots")
 SpawnerNpcPath = NodePath("../actor/peds")
 PedsGroupsPath = NodePath("../actor/peds_group")

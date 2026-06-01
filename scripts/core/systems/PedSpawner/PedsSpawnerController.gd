@@ -1,7 +1,7 @@
 extends Node
 class_name PedsSpawnerController
 
-const ACTOR_PED = preload("uid://cor842snoqhpm")
+const ACTOR_PED = preload("uid://c135kms22754d")
 
 @export var SpawnerSlotsPath:Node = null
 @export var SpawnerNpcPath:Node = null
@@ -30,12 +30,12 @@ func _ready() -> void:
 	var _dict_pathnode_list = FlowAIControllerNode._get_pathnodes_list()
 	pathnodes.assign(_dict_pathnode_list.values())
 	
-	# If I wanna put spawner manually in the map, use it.
+	# if someday i need to put some spawner manually in the map, I can use it.
 	#for i in SpawnerSlotsPath.get_children():
 		#if i is PedsSpawnerSlot:
 			#peds_spawners.append(i)
 	
-	# Object Pooling of the NPCs
+	# Object Pooling for the Peds
 	for i in range(peds_pool_size):
 		var actor_ped = ACTOR_PED.instantiate()
 		SpawnerNpcPath.add_child(actor_ped)
@@ -45,8 +45,7 @@ func _ready() -> void:
 		NpcManager.all_peds.append(actor_ped)
 		NpcManager.inactive_peds.append(actor_ped)
 	
-	# Idk a better way to spawn NPCs in appropriate locations, that was the solution.
-	# Creates the PedsSpawnerSlot for each Pathnode of FlowAI System
+	# Creates the PedsSpawnerSlot for each Pathnode of FlowAI pathnodes
 	for wp in pathnodes:
 		var slot = PedsSpawnerSlot.new()
 		slot.ped_spawner_type = slot.SpawnerType.DEFAULT

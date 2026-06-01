@@ -2,7 +2,7 @@ extends CharacterBody3D
 class_name ActorPed
 
 @onready var pedestrian_brain: PedestrianBrain = $core/PedestrianBrain
-@onready var mannequin_mesh: MeshInstance3D = $mesh/Rig/Skeleton3D/Mannequin
+@onready var mannequin_mesh: MeshInstance3D = $mesh/Armature/Skeleton3D/Mannequin
 
 var move_dir:Vector3 = Vector3.ZERO
 var look_dir:Vector3 = Vector3.ZERO
@@ -31,7 +31,9 @@ var is_stopped:bool = false
 var is_walking:bool = false
 var is_running:bool = false
 var is_leaning_wall_back:bool = false
+var is_leaning_rail:bool = false
 var is_sitting:bool = false
+var is_talking_phone:bool = false
 var is_on_event:bool = false
 var is_in_smart_object:bool = false
 var nearby_bodies:Array[ActorPed] = []
@@ -56,6 +58,11 @@ func _ready() -> void:
 	
 	mannequin_mesh.set_surface_override_material(0, material_0)
 	mannequin_mesh.set_surface_override_material(1, material_1)
+	
+	# spawn talking in cellphone
+	var talking_phone_random:int = randi_range(0, 3)
+	if talking_phone_random == 3:
+		is_talking_phone = true
 
 func _physics_process(delta: float) -> void:
 	animation_controller()
@@ -63,7 +70,7 @@ func _physics_process(delta: float) -> void:
 	orientation_controller()
 	
 	if not is_on_floor():
-		# For some reason the normal gravity (9.8) is slow for this NPC.
+		# For some reason the normal gravity (9.8) is slow for this NPC
 		velocity.y -= 500.0 * delta
 	
 	move_and_slide()
@@ -90,7 +97,6 @@ func movement_controller() -> void:
 	if ped_can_move and not is_sitting:
 		var avoidance_force = _get_avoidance_force()
 		var final_dir = move_dir
-		
 		if avoidance_force != Vector3.ZERO:
 			final_dir = (move_dir + avoidance_force * avoidance_side_weight).normalized()
 		
@@ -100,6 +106,7 @@ func movement_controller() -> void:
 
 func orientation_controller() -> void:
 	if velocity.length() > 0.5:
+		# Rotate the ped to the right dir when is walking
 		var to_target = atan2(move_dir.x, move_dir.z)
 		rotation.y = lerp_angle(rotation.y, to_target, 0.2)
 	else:
@@ -113,7 +120,6 @@ func orientation_controller() -> void:
 #region CALLS
 func set_event(event:Event) -> void:
 	_reset_actions()
-	
 	current_event = event
 	current_action_slot = event.get_free_slot(self)
 	if current_action_slot:
