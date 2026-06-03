@@ -16,7 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="Pedestrian AI System"
 config/version="1.0.0"
-run/main_scene="uid://u3yi40tfdo5x"
+run/main_scene="uid://b0ap1pvam2dj7"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -107,6 +107,7 @@ d_reload_npcs={
 3d_physics/layer_3="NPC"
 3d_physics/layer_4="Item"
 3d_physics/layer_5="NoCollisionToNpc"
+3d_physics/layer_6="SmartObjects"
 
 [physics]
 

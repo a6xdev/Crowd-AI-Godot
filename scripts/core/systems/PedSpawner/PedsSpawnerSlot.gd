@@ -1,42 +1,51 @@
 extends Marker3D
 class_name PedsSpawnerSlot
 
+# This is a slot. When the player gets closer of this slot, the PedsSpawnerController will get some ped
+# in the object pooling and put in this slot position
+
 enum SpawnerType {
 	DEFAULT,
-	ACTION
+	ACTION,
+	IDLE,
 }
 
 @export var ped_spawner_type:SpawnerType = SpawnerType.DEFAULT
+@export var ped_spawner_config:PedSpawnerConfig = PedSpawnerConfig.new()
 @export var peds_size:int = 1
 @export var can_spawn:bool = false
 
 var m_smart_object:SmartObject = null
-var m_action_slot:ActionSlot = null
-
 var all_peds_in_slot:Array[ActorPed] = []
 
+#region GODOT FUNCTIONS
 func _ready() -> void:
 	randomize()
 	await get_tree().create_timer(0.5).timeout
 	NpcManager.PedsSpawnerControllerNode.registry_ped_spawner(self)
+
+func _process(delta: float) -> void:
+	if OS.is_debug_build():
+		DebugDraw3D.draw_arrow(global_position, Vector3(global_position.x, global_position.y + 1.0, global_position.z))
+#endregion
 
 #region CALLS
 func set_ped_spawner_slot(ped:ActorPed) -> void:
 	if all_peds_in_slot.has(ped):
 		return
 	
+	ped.ped_can_move = ped_spawner_config.can_move
 	all_peds_in_slot.append(ped)
 	
 	match ped_spawner_type:
 		SpawnerType.DEFAULT:
-			# Wander State
 			ped.pedestrian_brain.change_state(PedStateWander.new())
 			return
 		
 		SpawnerType.ACTION:
-			if m_smart_object and m_action_slot:
-				m_smart_object.set_start_state(ped, m_action_slot)
-				ped.global_position = Vector3(m_action_slot.global_position.x, ped.global_position.y, m_action_slot.global_position.z)
+			if m_smart_object:
+				ped.is_talking_phone = false
+				ped.set_smart_object(m_smart_object, true)
 				return
 			
 		#SpawnerType.GROUP:
@@ -61,30 +70,6 @@ func set_ped_spawner_slot(ped:ActorPed) -> void:
 				#group_slot.slot_owner = ped
 				#ped.global_position = group_slot.global_position
 				#ped.global_position.y = group_slot.global_position.y + 1
-			#
-		#SpawnerType.SIT:
-			## Seated Peds
-			#
-			## Need rotate ped based on spawn rotate
-			#ped.rotate_y(global_rotation.y)
-			#ped.look_current_path_target = global_position
-			## Disable the movement to stay static.
-			#ped.ped_can_move = false
-			#ped.ped_can_rotate_body = false
-			## Active the animation.
-			#ped.is_sitting = true
-			#
-		#SpawnerType.LEAN_WALL_BACK:
-			## Ped leaning in the wall
-			#
-			## Need rotate ped based on spawn rotate
-			#ped.rotate_y(global_rotation.y)
-			#ped.look_current_path_target = global_position
-			## Disable the movement to stay static.
-			#ped.ped_can_move = false
-			#ped.ped_can_rotate_body = false
-			## Active the animation
-			#ped.is_leaning_wall_back = true
 
 # When the ped is despawned, the slot is cleared
 func clean_ped_spawner_slot(ped:ActorPed) -> void:

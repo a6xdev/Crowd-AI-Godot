@@ -6,3 +6,4 @@ var PlayerRef:Player = null
 var all_peds:Array[ActorPed] = []
 var inactive_peds:Array[ActorPed] = []
 var active_peds:Array[ActorPed] = []
+var smart_objects_slots:Array[ActionSlot] = []

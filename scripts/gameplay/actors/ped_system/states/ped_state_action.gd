@@ -26,7 +26,8 @@ func enter():
 	
 	match current_action_type:
 		ActionType.EVENT:
-			actor.current_event.event_finished.connect(_on_event_finished)
+			actor.is_talking_phone = false
+			if actor.current_event: actor.current_event.event_finished.connect(_on_event_finished)
 		ActionType.SMART_OBJECT:
 			pass
 

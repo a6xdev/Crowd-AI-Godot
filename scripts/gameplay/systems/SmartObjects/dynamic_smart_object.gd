@@ -13,9 +13,14 @@ enum DynamicActionType {
 
 var collision_shape := CollisionShape3D.new()
 var arrow := Arrow3D.new()
-var slot := ActionSlot.new()
 
 func _enter_tree() -> void:
+	if not Engine.is_editor_hint():
+		var slot := ActionSlot.new()
+		slot._smart_object_onwer = self
+		add_child(slot)
+		slots.append(slot)
+	
 	for child in get_children():
 		if child is CollisionShape3D:
 			return
@@ -26,8 +31,10 @@ func _enter_tree() -> void:
 
 func _ready() -> void:
 	if not Engine.is_editor_hint():
-		add_child(slot)
-		slots.append(slot)
+		set_collision_layer_value(1, false)
+		set_collision_layer_value(6, true)
+		set_collision_mask_value(1, false)
+
 
 #region SYSTEM CALLS
 func perform_interaction(actor:ActorPed) -> bool:

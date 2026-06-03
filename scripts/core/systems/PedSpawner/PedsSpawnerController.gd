@@ -14,7 +14,6 @@ const ACTOR_PED = preload("uid://c135kms22754d")
 @export var spawn_radius:float = 100.0
 @export var despawn_radius:float = 100.0
 
-var pathnodes:Array[FlowAIPathNode] = []
 var peds_spawners:Array[PedsSpawnerSlot] = []
 
 var init_spawn_radius:float = 0.0
@@ -27,13 +26,18 @@ func _ready() -> void:
 	init_spawn_radius = spawn_radius
 	init_despawn_radius = despawn_radius
 	
-	var _dict_pathnode_list = FlowAIControllerNode._get_pathnodes_list()
-	pathnodes.assign(_dict_pathnode_list.values())
+	await get_tree().process_frame
 	
-	# if someday i need to put some spawner manually in the map, I can use it.
-	#for i in SpawnerSlotsPath.get_children():
-		#if i is PedsSpawnerSlot:
-			#peds_spawners.append(i)
+	var _to_create_spawner_slot:Array = []
+	_to_create_spawner_slot.append_array(FlowAIControllerNode._get_pathnodes_list().values())
+	_to_create_spawner_slot.append_array(NpcManager.smart_objects_slots)
+	
+	print(NpcManager.smart_objects_slots)
+	
+	# Spawn peds in positions manually defined by me
+	for i in SpawnerSlotsPath.get_children():
+		if i is PedsSpawnerSlot:
+			peds_spawners.append(i)
 	
 	# Object Pooling for the Peds
 	for i in range(peds_pool_size):
@@ -46,11 +50,18 @@ func _ready() -> void:
 		NpcManager.inactive_peds.append(actor_ped)
 	
 	# Creates the PedsSpawnerSlot for each Pathnode of FlowAI pathnodes
-	for wp in pathnodes:
+	for _new_spawner_slot in _to_create_spawner_slot:
 		var slot = PedsSpawnerSlot.new()
-		slot.ped_spawner_type = slot.SpawnerType.DEFAULT
+		var _spawn_pos:Vector3 = Vector3.ZERO
+		
+		if _new_spawner_slot is ActionSlot:
+			slot.ped_spawner_type = PedsSpawnerSlot.SpawnerType.ACTION
+			slot.m_smart_object = _new_spawner_slot.get_smart_object_owner()
+		else:
+			slot.ped_spawner_type = slot.SpawnerType.DEFAULT
+		
 		SpawnerSlotsPath.add_child(slot)
-		slot.global_position = wp.global_position
+		slot.global_position = _new_spawner_slot.global_position
 		peds_spawners.append(slot)
 
 func _input(event: InputEvent) -> void:
@@ -77,13 +88,11 @@ func _process(delta: float) -> void:
 			
 			if slot.all_peds_in_slot.size() < slot.peds_size and dist <= spawn_radius and slot.can_spawn:
 				while slot.all_peds_in_slot.size() < slot.peds_size:
-					if slot.ped_spawner_type == PedsSpawnerSlot.SpawnerType.ACTION and slot.m_action_slot.is_taken:
-						break
-						
 					var ped = active_ped()
 					if ped != null:
 						ped.global_position = slot.global_position
 						ped.global_position.y = slot.global_position.y
+						ped.global_rotation.y = slot.global_rotation.y
 						slot.set_ped_spawner_slot(ped)
 						await get_tree().create_timer(0.3).timeout
 					else:

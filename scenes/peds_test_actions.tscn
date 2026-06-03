@@ -105,6 +105,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
 
 [node name="FlowAIController" type="Node" parent="map" unique_id=1231118053]
 script = ExtResource("1_ia820")
+show_pathnode_lines = false
+show_pathnode_shape = false
+show_pathnode_label = false
 metadata/_custom_type_script = "uid://dd5lfsdhb8jrr"
 
 [node name="area_1" type="Node3D" parent="map/FlowAIController" unique_id=1732589099 node_paths=PackedStringArray("a_flow_controller")]
@@ -160,28 +163,28 @@ shape = SubResource("ConcavePolygonShape3D_syjyj")
 transform = Transform3D(0.9408166, 0, 0.9330002, 0, 1.325, 0, -0.9330002, 0, 0.9408166, -2.1436725, 0.064006805, -3.0596116)
 
 [node name="obj_cafe_table" parent="map/NavigationRegion3D/smart_objects" unique_id=2128676444 instance=ExtResource("7_l0euq")]
-transform = Transform3D(0.12069124, 0, 0.9926901, 0, 1, 0, -0.9926901, 0, 0.12069124, -3.0429952, -3.8146973e-06, 1.5620345)
+transform = Transform3D(0.09594954, 0, 0.7891886, 0, 0.795, 0, -0.7891886, 0, 0.09594954, -3.0429952, 19.999996, 1.5620345)
 
 [node name="obj_cafe_chair" parent="map/NavigationRegion3D/smart_objects" unique_id=1013096838 instance=ExtResource("8_tslnw")]
-transform = Transform3D(-0.99333066, 0, -0.11530118, 0, 1, 0, 0.11530118, 0, -0.99333066, -3.8486629, -3.8146973e-06, 2.3585005)
+transform = Transform3D(-0.99333066, 0, -0.11530118, 0, 1, 0, 0.11530118, 0, -0.99333066, -3.8486629, 0, 2.3585005)
 
 [node name="obj_cafe_chair2" parent="map/NavigationRegion3D/smart_objects" unique_id=1126116412 instance=ExtResource("8_tslnw")]
-transform = Transform3D(-0.26759157, 0, -0.9635323, 0, 1, 0, 0.9635323, 0, -0.26759157, -1.9639018, -3.8146973e-06, 1.0578799)
+transform = Transform3D(-0.26759157, 0, -0.9635323, 0, 1, 0, 0.9635323, 0, -0.26759157, -1.9639018, 19.999996, 1.0578799)
 
 [node name="obj_cafe_table2" parent="map/NavigationRegion3D/smart_objects" unique_id=1717253213 instance=ExtResource("7_l0euq")]
-transform = Transform3D(0.7066504, 0.00021545189, -0.70756286, 0.00272109, 0.9999917, 0.0030220777, 0.7075577, -0.004060894, 0.7066439, 1.6508056, 0.0028686523, 2.202005)
+transform = Transform3D(0.56178707, 0.00017128457, -0.5625125, 0.0021632668, 0.7949934, 0.0024025517, 0.5625084, -0.0032284113, 0.56178194, 1.6508056, 20.002869, 2.202005)
 
 [node name="obj_cafe_chair3" parent="map/NavigationRegion3D/smart_objects" unique_id=337498485 instance=ExtResource("8_tslnw")]
-transform = Transform3D(0.739147, 0.0013381756, 0.6735429, -0.0035755965, 0.9999917, 0.0019371104, -0.67353475, -0.0038401266, 0.7391457, 1.392767, 0.0014533997, 0.852952)
+transform = Transform3D(0.739147, 0.0013381756, 0.6735429, -0.0035755965, 0.9999917, 0.0019371104, -0.67353475, -0.0038401266, 0.7391457, 1.392767, 20.001453, 0.852952)
 
 [node name="obj_cafe_chair4" parent="map/NavigationRegion3D/smart_objects" unique_id=1079454107 instance=ExtResource("8_tslnw")]
-transform = Transform3D(0.23739548, 0.004064607, 0.97140455, -0.001088805, 0.99999183, -0.003918136, -0.97141254, -0.00012752248, 0.237398, 0.34235382, 0.0006942749, 1.7118433)
+transform = Transform3D(0.23739548, 0.004064607, 0.97140455, -0.001088805, 0.99999183, -0.003918136, -0.97141254, -0.00012752248, 0.237398, 0.34235382, 20.000694, 1.7118433)
 
 [node name="obj_cafe_chair5" parent="map/NavigationRegion3D/smart_objects" unique_id=717589187 instance=ExtResource("8_tslnw")]
-transform = Transform3D(-0.73914695, -0.0013381745, -0.673543, -0.0035755965, 0.9999917, 0.0019371104, 0.6735348, 0.003840127, -0.73914564, 1.9682411, 0.0014533997, 3.2944527)
+transform = Transform3D(-0.73914695, -0.0013381745, -0.673543, -0.0035755965, 0.9999917, 0.0019371104, 0.6735348, 0.003840127, -0.73914564, 1.9682411, 20.001453, 3.2944527)
 
 [node name="obj_cafe_chair6" parent="map/NavigationRegion3D/smart_objects" unique_id=2033274122 instance=ExtResource("8_tslnw")]
-transform = Transform3D(-0.23739538, -0.004064607, -0.97140455, -0.001088805, 0.99999183, -0.003918136, 0.9714125, 0.0001275227, -0.23739791, 3.0186543, 0.0006942749, 2.4355614)
+transform = Transform3D(-0.23739538, -0.004064607, -0.97140455, -0.001088805, 0.99999183, -0.003918136, 0.9714125, 0.0001275227, -0.23739791, 3.0186543, 20.000694, 2.4355614)
 
 [node name="DynamicSmartObject" type="Area3D" parent="map/NavigationRegion3D/smart_objects" unique_id=1429794746]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 1.6546919, 0, -4.2919655)
@@ -190,7 +193,7 @@ action_type = 1
 metadata/_custom_type_script = "uid://nll4frg1vfab"
 
 [node name="DynamicSmartObject2" type="Area3D" parent="map/NavigationRegion3D/smart_objects" unique_id=1375130976]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.654692, 0, -4.2644787)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.654692, 0, -4.2644787)
 script = ExtResource("12_syjyj")
 action_type = 1
 metadata/_custom_type_script = "uid://nll4frg1vfab"

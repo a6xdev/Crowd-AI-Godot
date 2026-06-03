@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bu0all1rqm11c" path="res://scripts/gameplay/objects/SmartObjects/SmartObjectSitAction.gd" id="1_ttqm1"]
 [ext_resource type="Texture2D" uid="uid://d2nirtspbtda2" path="res://assets/models/environment/cafe_pack/textures/chair_1.png" id="2_bunis"]
-[ext_resource type="Script" uid="uid://b21ldp6ap5gbq" path="res://scripts/core/systems/actions/ActionSlot.gd" id="3_bunis"]
+[ext_resource type="Script" uid="uid://b21ldp6ap5gbq" path="res://scripts/core/systems/actions/action_slot.gd" id="3_bunis"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vs37v"]
 resource_name = "chair_1"
@@ -49,6 +49,8 @@ albedo_texture = ExtResource("2_bunis")
 size = Vector3(0.5215454, 0.61535645, 0.38671875)
 
 [node name="so_cafe_chair" type="Area3D" unique_id=1013096838]
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1_ttqm1")
 metadata/_custom_type_script = "uid://dotyjoryn6h4s"
 

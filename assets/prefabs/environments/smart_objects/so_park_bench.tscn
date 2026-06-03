@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bul5lioyv8lef" path="res://assets/models/environment/park_bench/Park Bench_Bench_Wood_Metallic.png" id="8_kyf7n"]
 [ext_resource type="Texture2D" uid="uid://bmbaj5a67lkaq" path="res://assets/models/environment/park_bench/Park Bench_Bench_Wood_Normal.png" id="9_g1kwi"]
 [ext_resource type="Texture2D" uid="uid://4u6d3f4lhbgv" path="res://assets/models/environment/park_bench/Park Bench_Bench_Wood_Roughness.png" id="10_8eruv"]
-[ext_resource type="Script" uid="uid://b21ldp6ap5gbq" path="res://scripts/core/systems/actions/ActionSlot.gd" id="12_3nqm3"]
+[ext_resource type="Script" uid="uid://b21ldp6ap5gbq" path="res://scripts/core/systems/actions/action_slot.gd" id="12_3nqm3"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0pl38"]
 resource_name = "Bench_Metal"
@@ -107,6 +107,8 @@ size = Vector3(2.926628, 0.70007324, 0.35868835)
 
 [node name="so_park_bench" type="Area3D" unique_id=1447838123]
 transform = Transform3D(1.325, 0, 0, 0, 1.325, 0, 0, 0, 1.325, 0, 0, 0)
+collision_layer = 32
+collision_mask = 2
 script = ExtResource("1_jlp4a")
 metadata/_custom_type_script = "uid://dotyjoryn6h4s"
 
@@ -118,7 +120,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_wj1ql")
 surface_material_override/1 = SubResource("StandardMaterial3D_xr76i")
 
 [node name="collision" type="CollisionShape3D" parent="." unique_id=1653543735]
-transform = Transform3D(0.83333325, 0, 0, 0, 0.83333325, 0, 0, 0, 0.83333325, 0.0026495443, 0.24338901, -0.047242027)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0026495443, 0.24338901, -0.047242027)
 shape = SubResource("BoxShape3D_vn3mn")
 
 [node name="ParkBench_EventSlot_01" type="Marker3D" parent="." unique_id=264511554]

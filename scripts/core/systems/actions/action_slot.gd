@@ -3,6 +3,10 @@ class_name ActionSlot
 
 var is_taken:bool = false
 var slot_owner:CharacterBody3D = null
+var _smart_object_onwer:SmartObject = null
+
+func _enter_tree() -> void:
+	NpcManager.smart_objects_slots.append(self)
 
 func _ready() -> void:
 	#top_level = true
@@ -21,12 +25,16 @@ func _ready() -> void:
 	_snap_to_ground()
 
 func _process(delta: float) -> void:
-	DebugDraw3D.draw_sphere(global_position, 0.2, Color(0, 0, 1))
+	if OS.is_debug_build():
+		DebugDraw3D.draw_sphere(global_position, 0.2, Color(0, 0, 1))
 
 #region CALLS
 func reset() -> void:
 	is_taken = false
 	slot_owner = null
+
+func get_smart_object_owner() -> SmartObject:
+	return _smart_object_onwer
 
 func _snap_to_ground() -> void:
 	var space_state = get_world_3d().direct_space_state

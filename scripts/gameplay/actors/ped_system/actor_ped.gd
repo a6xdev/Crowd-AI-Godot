@@ -41,7 +41,6 @@ var nearby_smart_objects:Array[SmartObject] = []
 var nearby_events:Array[Event] = []
 
 var current_speed_type:SpeedType = SpeedType.WALK
-
 var current_smart_object:SmartObject = null
 var current_action_slot:ActionSlot = null
 var current_event:Event = null
@@ -61,8 +60,7 @@ func _ready() -> void:
 	
 	# spawn talking in cellphone
 	var talking_phone_random:int = randi_range(0, 3)
-	if talking_phone_random == 3:
-		is_talking_phone = true
+	is_talking_phone = true if talking_phone_random == 3 else false
 
 func _physics_process(delta: float) -> void:
 	animation_controller()
@@ -125,12 +123,21 @@ func set_event(event:Event) -> void:
 	if current_action_slot:
 		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.EVENT))
 
-func set_smart_object(smart_object:SmartObject) -> void:
+func set_smart_object(smart_object:SmartObject, _is_spawn:bool = false) -> void:
 	_reset_actions()
+	print(smart_object)
 	current_smart_object = smart_object
 	current_action_slot = smart_object.get_empty_slot()
+	if current_smart_object.print_get_slot:
+		print("ActionSlotDebug::SmartObject::", current_smart_object.name, "::PedName::", name, "::ActionSlotName::", current_action_slot.name)
+		
 	if current_action_slot:
+		if _is_spawn: global_position = current_action_slot.global_position
 		pedestrian_brain.change_state(PedStateAction.new(current_action_slot, PedStateAction.ActionType.SMART_OBJECT))
+	else:
+		current_smart_object = null
+		current_action_slot = null
+		pedestrian_brain.change_state(PedStateWander.new())
 
 func ped_reset() -> void:
 	_reset_actions()
@@ -142,6 +149,7 @@ func ped_reset() -> void:
 		current_smart_object = null
 	current_action_slot = null
 	is_leaning_wall_back = false
+	is_leaning_rail = false
 	is_on_event = false
 	is_in_smart_object = false
 	is_sitting = false

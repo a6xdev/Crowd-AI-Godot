@@ -1,13 +1,15 @@
 extends PedestrianState
 class_name PedStateWander
 
-const MAX_PATH_COMPLETED_INDEX:int = 3
-
 var path_completed_index:int = 0
 var index_already_gone_up:bool = false
 var _time_stopped:float = 0.0
+var _max_path_completed_index:int = 3
+var _max_time_stopped:float = 5.0
 
 func enter():
+	_max_path_completed_index = randi_range(3, 6)
+	_max_time_stopped = randf_range(3.0, 6.0)
 	agent.get_random_path()
 
 func exit():
@@ -17,16 +19,21 @@ func update(_delta:float):
 	if agent.is_path_complete() and not index_already_gone_up:
 		path_completed_index += 1
 		index_already_gone_up = true
+		
 		# If the pedestrian walks enough, he looks for something to do
-		if path_completed_index >= MAX_PATH_COMPLETED_INDEX and not actor.nearby_smart_objects.is_empty() and not actor.is_talking_phone:
+		var walked_enough:bool = path_completed_index >= _max_path_completed_index
+		var can_interact:bool = not actor.nearby_smart_objects.is_empty() and not actor.is_talking_phone
+		if walked_enough and can_interact:
 			var obj_smart_obj = actor.nearby_smart_objects.pick_random()
-			path_completed_index = 0
 			if obj_smart_obj:
+				path_completed_index = 0
+				index_already_gone_up = false
 				actor.set_smart_object(obj_smart_obj)
-		else:
-			agent.get_random_path()
+				return
+			
 			index_already_gone_up = false
-		return
+			agent.get_random_path()
+			return
 
 	var target_pos = agent.get_next_pathnode_position()
 	actor.move_dir = (target_pos - actor.global_position).normalized()
@@ -35,7 +42,9 @@ func update(_delta:float):
 	# idk if I will mantain this on release version, but looks good.
 	if actor.velocity.length() < 0.1:
 		_time_stopped += 1.0 * _delta
-		if _time_stopped > 5.0:
+		if _time_stopped > _max_time_stopped:
+			# NOTE: maybe we can form groups with nearby peds when stop.
+			
 			# Maybe this be defined in the spawn is a nice shot
 			#var talking_phone_random:int = randi_range(0, 20)
 			#if talking_phone_random == 3:
