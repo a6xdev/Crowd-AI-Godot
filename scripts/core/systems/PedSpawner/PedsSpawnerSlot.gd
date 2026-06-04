@@ -13,7 +13,7 @@ enum SpawnerType {
 @export var ped_spawner_type:SpawnerType = SpawnerType.DEFAULT
 @export var ped_spawner_config:PedSpawnerConfig = PedSpawnerConfig.new()
 @export var peds_size:int = 1
-@export var can_spawn:bool = false
+@export var can_spawn:bool = true
 
 var m_smart_object:SmartObject = null
 var all_peds_in_slot:Array[ActorPed] = []
@@ -25,7 +25,7 @@ func _ready() -> void:
 	NpcManager.PedsSpawnerControllerNode.registry_ped_spawner(self)
 
 func _process(delta: float) -> void:
-	if OS.is_debug_build():
+	if OS.is_debug_build() and World.is_debugging:
 		DebugDraw3D.draw_arrow(global_position, Vector3(global_position.x, global_position.y + 1.0, global_position.z))
 #endregion
 
@@ -75,8 +75,4 @@ func set_ped_spawner_slot(ped:ActorPed) -> void:
 func clean_ped_spawner_slot(ped:ActorPed) -> void:
 	if all_peds_in_slot.has(ped):
 		all_peds_in_slot.erase(ped)
-
-func reset_spawn():
-	all_peds_in_slot.clear()
-	can_spawn = false
 #endregion

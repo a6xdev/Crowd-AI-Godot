@@ -25,7 +25,7 @@ func _ready() -> void:
 	_snap_to_ground()
 
 func _process(delta: float) -> void:
-	if OS.is_debug_build():
+	if OS.is_debug_build() and World.is_debugging:
 		DebugDraw3D.draw_sphere(global_position, 0.2, Color(0, 0, 1))
 
 #region CALLS

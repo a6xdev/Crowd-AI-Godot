@@ -125,7 +125,6 @@ func set_event(event:Event) -> void:
 
 func set_smart_object(smart_object:SmartObject, _is_spawn:bool = false) -> void:
 	_reset_actions()
-	print(smart_object)
 	current_smart_object = smart_object
 	current_action_slot = smart_object.get_empty_slot()
 	if current_smart_object.print_get_slot:
@@ -144,10 +143,6 @@ func ped_reset() -> void:
 	ped_can_move = true
 	ped_can_rotate_body = true
 	current_event = null
-	if current_smart_object:
-		current_smart_object.desperform_interaction(self)
-		current_smart_object = null
-	current_action_slot = null
 	is_leaning_wall_back = false
 	is_leaning_rail = false
 	is_on_event = false
@@ -156,8 +151,12 @@ func ped_reset() -> void:
 	global_rotation = Vector3.ZERO
 
 func _reset_actions() -> void:
-	current_action_slot = null
-	current_smart_object = null
+	if current_smart_object:
+		current_smart_object.desperform_interaction(self)
+		current_smart_object = null
+	if current_action_slot:
+		current_action_slot.reset()
+		current_action_slot = null
 	current_event = null
 
 func _get_random_color() -> Color:

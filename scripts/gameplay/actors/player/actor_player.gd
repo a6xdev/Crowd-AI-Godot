@@ -102,10 +102,6 @@ func _input(event: InputEvent) -> void:
 		
 		new_event.event_finished.connect(_on_event_dance_finished)
 	
-	if Input.is_action_just_pressed("a_drop"):
-		trash_obj.show()
-		is_dropping = true
-
 func _process(delta: float) -> void:
 	pass
 

@@ -32,8 +32,6 @@ func _ready() -> void:
 	_to_create_spawner_slot.append_array(FlowAIControllerNode._get_pathnodes_list().values())
 	_to_create_spawner_slot.append_array(NpcManager.smart_objects_slots)
 	
-	print(NpcManager.smart_objects_slots)
-	
 	# Spawn peds in positions manually defined by me
 	for i in SpawnerSlotsPath.get_children():
 		if i is PedsSpawnerSlot:
@@ -82,10 +80,6 @@ func _process(delta: float) -> void:
 		# Spawner Loop
 		for slot in peds_spawners:
 			var dist = slot.global_position.distance_to(current_camera_viewport.global_position)
-			
-			if slot.can_spawn == false and dist <= spawn_radius:
-				slot.can_spawn = decide_spawn(slot)
-			
 			if slot.all_peds_in_slot.size() < slot.peds_size and dist <= spawn_radius and slot.can_spawn:
 				while slot.all_peds_in_slot.size() < slot.peds_size:
 					var ped = active_ped()
@@ -107,21 +101,12 @@ func _process(delta: float) -> void:
 					if dist_to_ped >= despawn_radius and ped:
 						disable_ped(ped)
 						slot.clean_ped_spawner_slot(ped)
-						slot.can_spawn = false
 						break
 		
 		await get_tree().physics_frame
 #endregion
 
 #region CALLS
-func decide_spawn(slot:PedsSpawnerSlot):
-	var spawn_weights = {
-		slot.SpawnerType.DEFAULT: 0.8,
-		slot.SpawnerType.ACTION: 0.02,
-	}
-
-	return randf() < spawn_weights.get(slot.ped_spawner_type, 0.0)
-
 ## Get and active a ped
 func active_ped() -> ActorPed:
 	if NpcManager.inactive_peds.is_empty():

@@ -9,9 +9,7 @@ enum ActionType {
 
 var current_action_type:ActionType = ActionType.NONE
 var current_action_slot:ActionSlot = null
-
 var timer_in_smart_object:float = 0.0
-
 var is_executing_action:bool = false
 var have_slot_target:bool = false
 

@@ -1,6 +1,8 @@
 extends PedestrianState
 class_name PedStateWander
 
+# The Ped will walk, and walk, and, walk, and walk, and walk... until he wants to interact with some smart object
+
 var path_completed_index:int = 0
 var index_already_gone_up:bool = false
 var _time_stopped:float = 0.0
@@ -16,6 +18,7 @@ func exit():
 	actor.move_dir = Vector3.ZERO
 
 func update(_delta:float):
+	# logic for when peds reaches the end of the path
 	if agent.is_path_complete() and not index_already_gone_up:
 		path_completed_index += 1
 		index_already_gone_up = true
@@ -34,7 +37,8 @@ func update(_delta:float):
 			index_already_gone_up = false
 			agent.get_random_path()
 			return
-
+	
+	# Movement logic here
 	var target_pos = agent.get_next_pathnode_position()
 	actor.move_dir = (target_pos - actor.global_position).normalized()
 	actor.current_speed_type = ActorPed.SpeedType.WALK
