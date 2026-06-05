@@ -404,7 +404,7 @@ SpawnerSlotsPath = NodePath("../actor/PedSpawnerSlots")
 SpawnerNpcPath = NodePath("../actor/peds")
 PedsGroupsPath = NodePath("../actor/peds_group")
 FlowAIControllerNode = NodePath("../map/FlowAIController")
-peds_pool_size = 50
+peds_pool_size = 70
 spawn_radius = 50.0
 metadata/_custom_type_script = "uid://mk0cs7tsd178"
 
@@ -417,7 +417,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_left = 13.0
-offset_top = -220.0
+offset_top = -245.0
 offset_right = 193.0
 offset_bottom = -11.0
 grow_vertical = 0
@@ -473,6 +473,11 @@ horizontal_alignment = 1
 [node name="flymode" type="Label" parent="GameUI/peds_count_backgorund/vbox" unique_id=219450801]
 layout_mode = 2
 text = "Alt + F - Fly Mode"
+horizontal_alignment = 1
+
+[node name="display" type="Label" parent="GameUI/peds_count_backgorund/vbox" unique_id=1727610538]
+layout_mode = 2
+text = "F3 - Active Monitor"
 horizontal_alignment = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1947073600]

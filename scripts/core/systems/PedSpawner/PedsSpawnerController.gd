@@ -88,7 +88,6 @@ func _process(delta: float) -> void:
 						ped.global_position.y = slot.global_position.y
 						ped.global_rotation.y = slot.global_rotation.y
 						slot.set_ped_spawner_slot(ped)
-						await get_tree().create_timer(0.3).timeout
 					else:
 						break
 				break

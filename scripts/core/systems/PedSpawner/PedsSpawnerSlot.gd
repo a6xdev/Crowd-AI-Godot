@@ -12,7 +12,7 @@ enum SpawnerType {
 
 @export var ped_spawner_type:SpawnerType = SpawnerType.DEFAULT
 @export var ped_spawner_config:PedSpawnerConfig = PedSpawnerConfig.new()
-@export var peds_size:int = 1
+@export var peds_size:int = 3
 @export var can_spawn:bool = true
 
 var m_smart_object:SmartObject = null

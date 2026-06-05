@@ -24,7 +24,6 @@ config/icon="res://icon.svg"
 
 World="*res://scripts/core/globals/World.gd"
 NpcManager="*res://scripts/core/globals/NpcManager.gd"
-FlowAIDebugDraw="*uid://catwdltf1rfju"
 DebugMenu="*uid://cggqb75a8w8r"
 
 [debug_draw_3d]
