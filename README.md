@@ -1,4 +1,4 @@
-## Pedestrian AI in Godot Engine
+# Pedestrian AI (Godot Engine 4.6)
 
 Pedestrian simulation system for open worlds made in Godot Engine.
 
